@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014-2015 Christian Schudt
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>precis</artifactId>
+    <groupId>rocks.xmpp</groupId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>PRECIS Framework</name>
+    <description>Preparation, Enforcement, and Comparison of Internationalized Strings (RFC 7564, RFC 7613)
+    </description>
+
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
+
+    <!-- Project Site -->
+    <url>http://xmpp.rocks</url>
+
+    <!-- Licenses -->
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license</url>
+        </license>
+    </licenses>
+
+    <!-- Developers -->
+    <developers>
+        <developer>
+            <name>Christian Schudt</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+01:00</timezone>
+        </developer>
+    </developers>
+
+    <!-- Organization -->
+    <organization>
+        <name>XMPP.rocks</name>
+        <url>http://xmpp.rocks</url>
+    </organization>
+
+    <!-- Mailing Lists -->
+    <mailingLists>
+    </mailingLists>
+
+    <!-- Source Control Management -->
+    <scm>
+        <url>https://bitbucket.org/sco0ter/precis/src</url>
+        <connection>scm:git:git@bitbucket.org:sco0ter/precis.git</connection>
+        <developerConnection>scm:git:git@bitbucket.org:sco0ter/precis.git</developerConnection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <inceptionYear>2015</inceptionYear>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+
+        <plugins>
+            <!-- Generate a sources.jar, so that it can be used by JavaDoc plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Deploy this artifact -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.1</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <newVersion>0.7.0-SNAPSHOT</newVersion>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>display-plugin-updates</id>
+                        <goals>
+                            <goal>display-plugin-updates</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Do not deploy the root pom and also disable deployment via maven-deploy-plugin -->
+            <!-- We are using nexus-staging-maven-plugin for deployment -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.5</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Generate sources jar -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Generate JavaDoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                    <quiet>true</quiet>
+                                    <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+                                    <includeDependencySources>false</includeDependencySources>
+                                    <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
+                                    <nodeprecated>false</nodeprecated>
+                                    <nodeprecatedlist>false</nodeprecatedlist>
+                                    <author>false</author>
+                                    <notimestamp>true</notimestamp>
+                                    <doctitle>PRECIS ${project.version}</doctitle>
+                                    <windowtitle>PRECIS ${project.version}</windowtitle>
+                                    <docfilessubdirs>true</docfilessubdirs>
+                                    <show>protected</show>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Sign the artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                            <!--<report>project-team</report>-->
+                            <!--<report>modules</report>-->
+                            <!--<report>dependency-info</report>-->
+                            <!--<report>dependency-management</report>-->
+                            <!--<report>plugins</report>-->
+                            <!--<report>cim</report>-->
+                            <!--<report>issue-tracking</report>-->
+                            <!--<report>scm</report>-->
+                            <!--<report>dependency-convergence</report>-->
+                            <!--<report>license</report>-->
+                            <!--<report>plugin-management</report>-->
+                            <!--<report>distribution-management</report>-->
+                            <!--<report>summary</report>-->
+                            <!--<report>mailing-list</report>-->
+                            <!--<report>dependencies</report>-->
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <quiet>true</quiet>
+                            <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+                            <includeDependencySources>false</includeDependencySources>
+                            <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
+                            <nodeprecated>false</nodeprecated>
+                            <nodeprecatedlist>false</nodeprecatedlist>
+                            <author>false</author>
+                            <notimestamp>true</notimestamp>
+                            <doctitle>PRECIS ${project.version}</doctitle>
+                            <windowtitle>PRECIS ${project.version}</windowtitle>
+                            <docfilessubdirs>true</docfilessubdirs>
+                            <show>protected</show>
+                        </configuration>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
