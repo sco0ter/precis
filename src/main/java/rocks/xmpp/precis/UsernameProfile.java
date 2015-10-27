@@ -59,7 +59,7 @@ final class UsernameProfile extends PrecisProfile {
         // A username MUST NOT be zero bytes in length.  This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {
-            throw new IllegalArgumentException("A username must not be empty.");
+            throw new InvalidCodePointException("A username must not be empty.");
         }
 
         return enforced;

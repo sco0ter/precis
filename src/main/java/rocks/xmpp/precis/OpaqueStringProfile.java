@@ -42,7 +42,7 @@ final class OpaqueStringProfile extends PrecisProfile {
         // A password MUST NOT be zero bytes in length.  This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {
-            throw new IllegalArgumentException("String must not be empty after applying the rules.");
+            throw new InvalidCodePointException("String must not be empty after applying the rules.");
         }
         return enforced;
     }

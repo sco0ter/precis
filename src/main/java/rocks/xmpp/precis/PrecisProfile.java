@@ -510,7 +510,7 @@ public abstract class PrecisProfile {
      * Checks the Bidi Rule.
      *
      * @param label The label to check.
-     * @throws IllegalArgumentException If the label violates the Bidi Rule.
+     * @throws InvalidCodePointException If the label violates the Bidi Rule.
      */
     protected static void checkBidiRule(final CharSequence label) {
         if (label == null) {
@@ -530,7 +530,7 @@ public abstract class PrecisProfile {
         final boolean isRTLLabel = dir1stChar == Character.DIRECTIONALITY_RIGHT_TO_LEFT || dir1stChar == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
 
         if (!isLTRLabel && !isRTLLabel) {
-            throw new IllegalArgumentException("Bidi Rule 1: The first character must be a character with Bidi property L, R or AL.");
+            throw new InvalidCodePointException("Bidi Rule 1: The first character must be a character with Bidi property L, R or AL.");
         }
 
         // In order to check condition 3 and 6, get the Bidi property of the last character, which has not the property NSM.
@@ -556,7 +556,7 @@ public abstract class PrecisProfile {
             // 2.  In an RTL label, only characters with the Bidi properties R, AL,
             // AN, EN, ES, CS, ET, ON, BN, or NSM are allowed.
             if ((directionalityMask & ~R_AL_AN_EN_ES_CS_ET_ON_BN_NSM) != 0) {
-                throw new IllegalArgumentException("Bidi Rule 2: In an RTL label, only characters with the Bidi properties R, AL, AN, EN, ES, CS, ET, ON, BN, or NSM are allowed.");
+                throw new InvalidCodePointException("Bidi Rule 2: In an RTL label, only characters with the Bidi properties R, AL, AN, EN, ES, CS, ET, ON, BN, or NSM are allowed.");
             }
 
             // 3.  In an RTL label, the end of the label must be a character with
@@ -566,19 +566,19 @@ public abstract class PrecisProfile {
                     && directionalityLastNonNSMCharacter != Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC
                     && directionalityLastNonNSMCharacter != Character.DIRECTIONALITY_EUROPEAN_NUMBER
                     && directionalityLastNonNSMCharacter != Character.DIRECTIONALITY_ARABIC_NUMBER) {
-                throw new IllegalArgumentException("Bidi Rule 3: In an RTL label, the end of the label must be a character with Bidi property R, AL, EN, or AN.");
+                throw new InvalidCodePointException("Bidi Rule 3: In an RTL label, the end of the label must be a character with Bidi property R, AL, EN, or AN.");
             }
 
             // 4.  In an RTL label, if an EN is present, no AN may be present, and
             // vice versa.
             if ((directionalityMask & EN_AN) == EN_AN) {
-                throw new IllegalArgumentException("Bidi Rule 4: In an RTL label, if an EN is present, no AN may be present, and vice versa.");
+                throw new InvalidCodePointException("Bidi Rule 4: In an RTL label, if an EN is present, no AN may be present, and vice versa.");
             }
         } else {
             // 5.  In an LTR label, only characters with the Bidi properties L, EN,
             // ES, CS, ET, ON, BN, or NSM are allowed.
             if ((directionalityMask & ~L_EN_ES_CS_ET_ON_BN_NSM) != 0) {
-                throw new IllegalArgumentException("Bidi Rule 5: In an LTR label, only characters with the Bidi properties L, EN, ES, CS, ET, ON, BN, or NSM are allowed.");
+                throw new InvalidCodePointException("Bidi Rule 5: In an LTR label, only characters with the Bidi properties L, EN, ES, CS, ET, ON, BN, or NSM are allowed.");
             }
 
             // 6.  In an LTR label, the end of the label must be a character with
@@ -586,7 +586,7 @@ public abstract class PrecisProfile {
             // Bidi property NSM.
             if (directionalityLastNonNSMCharacter != Character.DIRECTIONALITY_LEFT_TO_RIGHT
                     && directionalityLastNonNSMCharacter != Character.DIRECTIONALITY_EUROPEAN_NUMBER) {
-                throw new IllegalArgumentException("Bidi Rule 6: In an LTR label, the end of the label must be a character with Bidi property L or EN.");
+                throw new InvalidCodePointException("Bidi Rule 6: In an LTR label, the end of the label must be a character with Bidi property L or EN.");
             }
         }
     }
@@ -655,7 +655,7 @@ public abstract class PrecisProfile {
                 valid = !identifierClass;
             }
             if (!valid) {
-                throw new IllegalArgumentException("Invalid code point at position " + offset + ": 0x" + Integer.toHexString(codePoint));
+                throw new InvalidCodePointException("Invalid code point at position " + offset + ": 0x" + Integer.toHexString(codePoint));
             }
             offset += Character.charCount(codePoint);
         }
