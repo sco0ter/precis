@@ -27,8 +27,6 @@ package rocks.xmpp.precis;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.text.Normalizer;
-
 import static rocks.xmpp.precis.PrecisProfiles.USERNAME_CASE_MAPPED;
 
 /**
