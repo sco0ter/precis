@@ -72,9 +72,9 @@ If a string contains prohibited code points, e.g. symbols in usernames, a `Inval
 
 ## Comparison
 
-`PrecisProfile` implements `java.util.Comparator`. It's `compare` method should be used to compare two strings with each other, e.g.:
+Each `PrecisProfile` implements `java.util.Comparator`. It's `compare` method should be used to compare two strings with each other, e.g.:
 
-```
+```java
 if (PrecisProfiles.USERNAME_CASE_MAPPED.compare("Foo", "foo") == 0) {
     // Usernames are equal
 }
