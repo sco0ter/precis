@@ -56,7 +56,7 @@ final class UsernameProfile extends PrecisProfile {
     @Override
     public final String enforce(final CharSequence input) {
         final String enforced = super.enforce(input);
-        // A username MUST NOT be zero bytes in length.  This rule is to be
+        // A username MUST NOT be zero bytes in length. This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {
             throw new InvalidCodePointException("A username must not be empty.");

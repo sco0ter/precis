@@ -25,7 +25,6 @@
 package rocks.xmpp.precis;
 
 import java.text.Normalizer;
-import java.util.regex.Pattern;
 
 /**
  * The implementation of the PRECIS: Nickname Profile, RFC 7700.
@@ -34,8 +33,6 @@ import java.util.regex.Pattern;
  * @see <a href="https://tools.ietf.org/html/rfc7700">Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames</a>
  */
 final class NicknameProfile extends PrecisProfile {
-
-    private static final Pattern WHITESPACE = Pattern.compile("\\p{Zs}");
 
     NicknameProfile() {
         super(false);

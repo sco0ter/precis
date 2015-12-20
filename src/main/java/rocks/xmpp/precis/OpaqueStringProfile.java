@@ -39,7 +39,7 @@ final class OpaqueStringProfile extends PrecisProfile {
     @Override
     public final String enforce(final CharSequence input) {
         final String enforced = super.enforce(input);
-        // A password MUST NOT be zero bytes in length.  This rule is to be
+        // A password MUST NOT be zero bytes in length. This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {
             throw new InvalidCodePointException("String must not be empty after applying the rules.");
@@ -60,7 +60,7 @@ final class OpaqueStringProfile extends PrecisProfile {
         // mapped to ASCII space (U+0020); a non-ASCII space is any Unicode
         // code point having a Unicode general category of "Zs" (with the
         // exception of U+0020).
-        return input.toString().replaceAll("\\p{Zs}", " ");
+        return WHITESPACE.matcher(input).replaceAll(" ");
     }
 
     @Override

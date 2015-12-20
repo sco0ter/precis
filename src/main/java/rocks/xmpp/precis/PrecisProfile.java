@@ -29,6 +29,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * This is the base class for a PRECIS profile. A profile defines a set of rules (width mapping, additional mapping, case mapping, normalization and directionality) and uses one of two string classes, IdentifierClass or FreeformClass, which define the allowed and disallowed characters.
@@ -95,6 +96,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
     private static final int EN_AN = 1 << Character.DIRECTIONALITY_EUROPEAN_NUMBER
             | 1 << Character.DIRECTIONALITY_ARABIC_NUMBER;
 
+    static final Pattern WHITESPACE = Pattern.compile("\\p{Zs}");
 
     // Key — Original Character
     // Value — Replacement character
@@ -677,7 +679,21 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * @see <a href="https://tools.ietf.org/html/rfc7564#section-7">7.  Order of Operations</a>
      */
     public String enforce(final CharSequence input) {
+        // TODO:
+        // it is unclear if enforcement
+        // a) should first apply the rules, then check the String class as defined in
         // https://tools.ietf.org/html/rfc7564#section-7
+        // -- or --
+        // b) should first check the String class and then apply the rules as defined in all known profiles.
+
+        // Usually this has no impact, but there's one case, where it has one:
+        // U+212B (ANGSTROM SIGN) in Usernames:
+        // If first checking the IdentifierClass (preparation) it would be disallowed, because it has a compatibility equivalent.
+        // If first applying the rules, it would be normalized with NFC and becomes U+00C5 and then would pass the IdentifierClass check.
+
+        // RFC 7613 introduced a workaround for the preparation by applying width-mapping as part of it, but it seems as if NFC normalization has
+        // been overlooked.
+        // As per Peter Saint-Andre, the first approach is desirable, so let's stick to it.
         return prepare(applyDirectionalityRule(
                 applyNormalizationRule(
                         applyCaseMappingRule(
