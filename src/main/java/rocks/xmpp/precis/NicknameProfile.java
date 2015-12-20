@@ -25,11 +25,17 @@
 package rocks.xmpp.precis;
 
 import java.text.Normalizer;
+import java.util.regex.Pattern;
 
 /**
+ * The implementation of the PRECIS: Nickname Profile, RFC 7700.
+ *
  * @author Christian Schudt
+ * @see <a href="https://tools.ietf.org/html/rfc7700">Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames</a>
  */
 final class NicknameProfile extends PrecisProfile {
+
+    private static final Pattern WHITESPACE = Pattern.compile("\\p{Zs}");
 
     NicknameProfile() {
         super(false);
@@ -38,11 +44,14 @@ final class NicknameProfile extends PrecisProfile {
     @Override
     public final String enforce(final CharSequence input) {
         // An entity that performs enforcement according to this profile MUST
-        // prepare a string as described in Section 2.2 section and MUST also
-        // apply the rules specified in Section 2.1.  The rules MUST be applied
-        // in the order shown.
+        // prepare a string as described in Section 2.2 and MUST also apply the
+        // following rules specified in Section 2.1 in the order shown:
 
-        final String enforced = super.enforce(input);
+        // 1.  Additional Mapping Rule
+        // 2.  Normalization Rule
+        // 3.  Directionality Rule
+
+        final String enforced = applyDirectionalityRule(applyNormalizationRule(applyAdditionalMappingRule(prepare(input)))).toString();
 
         // After all of the foregoing rules have been enforced, the entity MUST
         // ensure that the nickname is not zero bytes in length (this is done
@@ -71,7 +80,7 @@ final class NicknameProfile extends PrecisProfile {
         // space (U+0020); a non-ASCII space is any Unicode code point
         // having a general category of "Zs", naturally with the
         // exception of U+0020.
-        final String mapped = input.toString().replaceAll("\\p{Zs}", " ");
+        final String mapped = WHITESPACE.matcher(input).replaceAll(" ");
 
         // 2.  Any instances of the ASCII space character at the beginning
         // or end of a nickname MUST be removed (e.g., "stpeter " is

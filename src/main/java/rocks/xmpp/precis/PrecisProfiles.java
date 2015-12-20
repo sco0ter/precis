@@ -68,7 +68,7 @@ public final class PrecisProfiles {
 
     /**
      * The "UsernameCaseMapped Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", RFC 7613.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
      *
      * @see <a href="https://tools.ietf.org/html/rfc7613#section-3.2">3.2.  UsernameCaseMapped Profile</a>
      */
@@ -76,7 +76,7 @@ public final class PrecisProfiles {
 
     /**
      * The "UsernameCasePreserved Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", RFC 7613.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
      *
      * @see <a href="https://tools.ietf.org/html/rfc7613#section-3.3">3.3.  UsernameCasePreserved Profile</a>
      */
@@ -84,7 +84,7 @@ public final class PrecisProfiles {
 
     /**
      * The "OpaqueString Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", RFC 7613.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
      *
      * @see <a href="https://tools.ietf.org/html/rfc7613#section-4.2">4.2.  OpaqueString Profile</a>
      */
@@ -92,9 +92,9 @@ public final class PrecisProfiles {
 
     /**
      * The "Nickname Profile" specified in "Preparation, Enforcement, and Comparison
-     * of Internationalized Strings Representing Nicknames".
+     * of Internationalized Strings Representing Nicknames", <a href="https://tools.ietf.org/html/rfc7700">RFC 7700</a>.
      *
-     * @see <a href="https://tools.ietf.org/html/draft-ietf-precis-nickname">Preparation, Enforcement, and Comparison of Internationalized Strings
+     * @see <a href="https://tools.ietf.org/html/rfc7700">Preparation, Enforcement, and Comparison of Internationalized Strings
      * Representing Nicknames</a>
      */
     public static final PrecisProfile NICKNAME = new NicknameProfile();

@@ -15,7 +15,7 @@ This library supports the following specifications:
 
 * [RFC 7564](https://tools.ietf.org/html/rfc7564): PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols
 * [RFC 7613](https://tools.ietf.org/html/rfc7613): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords
-* [Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames](https://tools.ietf.org/html/draft-ietf-precis-nickname-19)
+* [RFC 7700](https://tools.ietf.org/html/rfc7700): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames
 * [RFC 5893](https://tools.ietf.org/html/rfc5893): Right-to-Left Scripts for Internationalized Domain Names for Applications (IDNA)
 
 **PRECIS** obsoletes Stringprep ([RFC 3454](https://tools.ietf.org/html/rfc3454)) and this library obsoletes software like [Libidn's Stringprep class](http://www.gnu.org/software/libidn/javadoc/gnu/inet/encoding/Stringprep.html).
