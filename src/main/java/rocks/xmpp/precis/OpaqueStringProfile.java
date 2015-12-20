@@ -37,7 +37,7 @@ final class OpaqueStringProfile extends PrecisProfile {
     }
 
     @Override
-    public String enforce(final CharSequence input) {
+    public final String enforce(final CharSequence input) {
         final String enforced = super.enforce(input);
         // A password MUST NOT be zero bytes in length.  This rule is to be
         // enforced after any normalization and mapping of code points.

@@ -65,6 +65,35 @@ final class NicknameProfile extends PrecisProfile {
         return enforced;
     }
 
+    /**
+     * Compares two nicknames with each other.
+     *
+     * @param o1 The first string.
+     * @param o2 The second string.
+     * @return 0 of both strings are equal with regard to this profile, otherwise the comparison result.
+     * @see <a href="https://tools.ietf.org/html/rfc7700#section-2.4">2.4.  Comparison</a>
+     */
+    @Override
+    public final int compare(CharSequence o1, CharSequence o2) {
+        return applyRulesForComparison(o1).compareTo(applyRulesForComparison(o2));
+    }
+
+    private String applyRulesForComparison(CharSequence input) {
+        // An entity that performs comparison of two strings according to this
+        // profile MUST prepare each string as specified in Section 2.2 and MUST
+        // apply the following rules specified in Section 2.1 in the order
+        // shown:
+        // 1.  Additional Mapping Rule
+        // 2.  Case Mapping Rule
+        // 3.  Normalization Rule
+        // 4.  Directionality Rule
+        return applyDirectionalityRule(
+                applyNormalizationRule(
+                        applyCaseMappingRule(
+                                applyAdditionalMappingRule(
+                                        prepare(input))))).toString();
+    }
+
     @Override
     protected final CharSequence applyWidthMappingRule(final CharSequence input) {
         // 1.  Width Mapping Rule: There is no width-mapping rule

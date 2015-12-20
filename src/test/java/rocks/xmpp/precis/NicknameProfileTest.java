@@ -59,16 +59,16 @@ public class NicknameProfileTest {
         NICKNAME.enforce("");
     }
 
-    @Test(enabled = false)
+    @Test
     public void testExamples() {
-        Assert.assertEquals(NICKNAME.enforce("Foo"), "foo");
-        Assert.assertEquals(NICKNAME.enforce("foo"), "foo");
-        Assert.assertEquals(NICKNAME.enforce("Foo Bar"), "foo bar");
-        Assert.assertEquals(NICKNAME.enforce("foo bar"), "foo bar");
-        Assert.assertEquals(NICKNAME.enforce("\u03A3"), "\u03C3");
-        Assert.assertEquals(NICKNAME.enforce("\u03C3"), "\u03C3");
-        Assert.assertEquals(NICKNAME.enforce("\u03C2"), "\u03C3");
-        Assert.assertEquals(NICKNAME.enforce("\u265A"), "\u265A");
-        Assert.assertEquals(NICKNAME.enforce("Richard \u2163"), "richard iv");
+        Assert.assertEquals(NICKNAME.compare("Foo", "foo"), 0);
+        Assert.assertEquals(NICKNAME.compare("foo", "foo"), 0);
+        Assert.assertEquals(NICKNAME.compare("Foo Bar", "foo bar"), 0);
+        Assert.assertEquals(NICKNAME.compare("foo bar", "foo bar"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u03A3", "\u03C3"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u03C3", "\u03C3"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u03C2", "\u03C3"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u265A", "\u265A"), 0);
+        Assert.assertEquals(NICKNAME.compare("Richard \u2163", "richard iv"), 0);
     }
 }

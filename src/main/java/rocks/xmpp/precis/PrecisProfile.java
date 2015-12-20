@@ -25,6 +25,7 @@
 package rocks.xmpp.precis;
 
 import java.text.Normalizer;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -52,7 +53,7 @@ import java.util.Map;
  * @see <a href="https://tools.ietf.org/html/rfc7564#section-4">4.  String Classes</a>
  * @see <a href="https://tools.ietf.org/html/rfc7564#section-5">5.  Profiles</a>
  */
-public abstract class PrecisProfile {
+public abstract class PrecisProfile implements Comparator<CharSequence> {
 
     /**
      * Maps full- and half-width characters to their decomposition form.
@@ -93,6 +94,7 @@ public abstract class PrecisProfile {
      */
     private static final int EN_AN = 1 << Character.DIRECTIONALITY_EUROPEAN_NUMBER
             | 1 << Character.DIRECTIONALITY_ARABIC_NUMBER;
+
 
     // Key — Original Character
     // Value — Replacement character
@@ -681,6 +683,19 @@ public abstract class PrecisProfile {
                         applyCaseMappingRule(
                                 applyAdditionalMappingRule(
                                         applyWidthMappingRule(input))))));
+    }
+
+    /**
+     * Compares two strings with each other. The default comparison method {@linkplain #enforce(CharSequence) enforces} the rules of a profile to each string and then compares them.
+     * However, there are exceptions to this approach, like in the Nickname profile, where comparison uses different rules than enforcement.
+     *
+     * @param o1 The first string.
+     * @param o2 The second string.
+     * @return 0 if the strings are equal, otherwise the comparison result.
+     */
+    @Override
+    public int compare(CharSequence o1, CharSequence o2) {
+        return enforce(o1).compareTo(enforce(o2));
     }
 
     /**
