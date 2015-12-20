@@ -1,6 +1,6 @@
 A Java implementation of the **"PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols"** and profiles thereof.
 
-# Why PRECIS?
+# About
 
 **PRECIS** validates and prepares Unicode strings in a way, so that they can safely be used in application protocols, e.g. when dealing with usernames and passwords.
 
@@ -8,8 +8,6 @@ For example, if strings are used for authentication and authorization decisions,
 providing a given string is connected to the wrong account or online resource based on different interpretations of the string.
 
 **PRECIS** takes care of such issues.
-
-# About
 
 This library supports the following specifications:
 
@@ -67,11 +65,17 @@ All three result in `LATIN SMALL LETTER A WITH RING ABOVE` (U+00E5) and are ther
 The following throws an exception because it violates the Bidi Rule (RFC 5893).
 
 ```java
-USERNAME_CASE_MAPPED.enforce("\u0786test");
+PrecisProfiles.USERNAME_CASE_MAPPED.enforce("\u0786test");
 ```
 
-If a string contains prohibited characters, e.g. symbols in usernames, a `PrecisException` is thrown, either during preparation or enforcement.
+If a string contains prohibited code points, e.g. symbols in usernames, a `InvalidCodePointException` is thrown, either during preparation or enforcement.
 
 ## Comparison
 
-After enforcement, two strings can simply be compared with the `String.equals()` or `String.compareTo()` method.
+`PrecisProfile` implements `java.util.Comparator`. It's `compare` method should be used to compare two strings with each other, e.g.:
+
+```
+if (PrecisProfiles.USERNAME_CASE_MAPPED.compare("Foo", "foo") == 0) {
+    // Usernames are equal
+}
+```
