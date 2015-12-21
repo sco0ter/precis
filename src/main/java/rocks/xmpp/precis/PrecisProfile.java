@@ -602,6 +602,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param input The input string.
      * @return The prepared string.
+     * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
      */
     public String prepare(final CharSequence input) {
         final int length = input.length();
@@ -676,6 +677,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param input The input string.
      * @return The output string.
+     * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
      * @see <a href="https://tools.ietf.org/html/rfc7564#section-7">7.  Order of Operations</a>
      */
     public String enforce(final CharSequence input) {
@@ -708,6 +710,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * @param o1 The first string.
      * @param o2 The second string.
      * @return 0 if the strings are equal, otherwise the comparison result.
+     * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
      */
     @Override
     public int compare(CharSequence o1, CharSequence o2) {

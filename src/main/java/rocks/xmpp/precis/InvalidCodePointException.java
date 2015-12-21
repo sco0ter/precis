@@ -25,7 +25,7 @@
 package rocks.xmpp.precis;
 
 /**
- * Thrown to indicates that a string contains invalid code points after applying preparation or enforcement of the PRECIS framework.
+ * Thrown to indicate that a string contains invalid code points after applying preparation or enforcement of the PRECIS framework.
  *
  * @author Christian Schudt
  */
