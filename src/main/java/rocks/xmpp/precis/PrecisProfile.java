@@ -53,6 +53,7 @@ import java.util.regex.Pattern;
  * @author Christian Schudt
  * @see <a href="https://tools.ietf.org/html/rfc7564#section-4">4.  String Classes</a>
  * @see <a href="https://tools.ietf.org/html/rfc7564#section-5">5.  Profiles</a>
+ * @see PrecisProfiles
  */
 public abstract class PrecisProfile implements Comparator<CharSequence> {
 

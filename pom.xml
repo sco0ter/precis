@@ -31,7 +31,7 @@
     <groupId>rocks.xmpp</groupId>
     <version>0.1.0-SNAPSHOT</version>
     <name>PRECIS Framework</name>
-    <description>Preparation, Enforcement, and Comparison of Internationalized Strings (RFC 7564, RFC 7613)
+    <description>Preparation, Enforcement, and Comparison of Internationalized Strings (RFC 7564, RFC 7613, RFC 7700)
     </description>
 
     <prerequisites>
