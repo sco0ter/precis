@@ -18,7 +18,14 @@ This library supports the following specifications:
 
 **PRECIS** obsoletes Stringprep ([RFC 3454](https://tools.ietf.org/html/rfc3454)) and this library obsoletes software like [Libidn's Stringprep class](http://www.gnu.org/software/libidn/javadoc/gnu/inet/encoding/Stringprep.html).
 
+## License
+
 This software is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Build
+
+This project is *Maven* based, you can simply build it with common *Maven* commands, e.g.
+> mvn clean install
 
 # API & Samples
 
