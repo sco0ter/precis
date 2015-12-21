@@ -33,7 +33,7 @@ PrecisProfile profile4 = PrecisProfiles.NICKNAME;
 
 `PrecisProfile` is an abstract class, which you could derive from for defining your custom profile (which however is [discouraged](https://tools.ietf.org/html/rfc7564#section-5.1) by RFC 7564).
 
-[JavaDoc can be found here.](http://sco0ter.bitbucket.org/precis/)
+**[JavaDoc can be found here.](http://sco0ter.bitbucket.org/precis/)**
 
 ## Preparation
 
@@ -64,7 +64,7 @@ String aRing = PrecisProfiles.USERNAME_CASE_MAPPED.enforce("\u00C5");   // LATIN
 
 All three result in `LATIN SMALL LETTER A WITH RING ABOVE` (U+00E5) and are therefore equal after enforcement.
 
-The following throws an exception because it violates the Bidi Rule (RFC 5893).
+The following throws an `InvalidDirectionalityException` because it violates the Bidi Rule (RFC 5893).
 
 ```java
 PrecisProfiles.USERNAME_CASE_MAPPED.enforce("\u0786test");
