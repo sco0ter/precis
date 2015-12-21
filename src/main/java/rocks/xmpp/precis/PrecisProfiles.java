@@ -26,15 +26,15 @@ package rocks.xmpp.precis;
 
 /**
  * This class provides common PRECIS profiles, mainly specified by <a href="https://tools.ietf.org/html/rfc7613">Preparation, Enforcement, and Comparison of Internationalized Strings
- * Representing Usernames and Passwords</a> (RFC 7613).
+ * Representing Usernames and Passwords</a> (RFC 7613). Each profile offers methods for preparation, enforcement and comparison of Unicode strings.
  * <h2>Preparation</h2>
- * Preparation ensures, that a string contains only of valid characters, but does not apply any mapping rules.
+ * Preparation ensures, that a string contains only valid characters, but usually does not apply any mapping rules.
  * <pre>
  * {@code
  * PrecisProfiles.USERNAME_CASE_MAPPED.prepare("UpperCaseUsername");
  * }
  * </pre>
- * If the passed string contains any invalid characters, an {@link IllegalArgumentException} is thrown:
+ * If the passed string contains any invalid characters, an {@link InvalidCodePointException} is thrown:
  * <pre>
  * {@code
  * PrecisProfiles.USERNAME_CASE_MAPPED.prepare("Username\u265A"); // Contains symbol, throws exception.
@@ -59,7 +59,15 @@ package rocks.xmpp.precis;
  * }
  * }
  * </pre>
- * Also note that {@link PrecisProfile} implements {@link java.util.Comparator} for more complex string comparison operations.
+ * However, using {@link PrecisProfile#compare(CharSequence, CharSequence)} is preferable, because a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 7700):
+ * <pre>
+ * {@code
+ * if (profile.compare("foobar", "FooBar") == 0) {
+ *     // username already exists.
+ * }
+ * }
+ * </pre>
+ * Also note that {@link PrecisProfile} implements {@link java.util.Comparator}.
  *
  * @author Christian Schudt
  * @see PrecisProfile

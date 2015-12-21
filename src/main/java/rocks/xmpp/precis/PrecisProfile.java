@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * particular string class or profile thereof to an individual
  * string, for the purpose of determining if the string can be used
  * in a given protocol slot.</li>
- * <li>Comparison: entails applying all of the rules specified for a
+ * <li>{@linkplain #compare(CharSequence, CharSequence) Comparison}: entails applying all of the rules specified for a
  * particular string class or profile thereof to two separate
  * strings, for the purpose of determining if the two strings are
  * equivalent.</li>
@@ -601,7 +601,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * class.
      *
      * @param input The input string.
-     * @return The prepared string.
+     * @return For convenience, returns the same string as the input string.
      * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
      */
     public String prepare(final CharSequence input) {
