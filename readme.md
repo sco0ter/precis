@@ -33,6 +33,8 @@ PrecisProfile profile4 = PrecisProfiles.NICKNAME;
 
 `PrecisProfile` is an abstract class, which you could derive from for defining your custom profile (which however is [discouraged](https://tools.ietf.org/html/rfc7564#section-5.1) by RFC 7564).
 
+[JavaDoc can be found here.](http://sco0ter.bitbucket.org/precis/)
+
 ## Preparation
 
 Preparation ensures, that characters are allowed, but (usually) does not apply any mapping rules. The following throws an exception because the string contains a character, which is in the Unicode category *Lt*, which is disallowed.
