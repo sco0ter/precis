@@ -57,7 +57,7 @@ final class NicknameProfile extends PrecisProfile {
         // characters are accepted a non-empty sequence of characters can result
         // in a zero-length nickname after canonicalization).
         if (enforced.isEmpty()) {
-            throw new InvalidCodePointException("Nickname must not be empty after applying the rules.");
+            throw new IllegalArgumentException("Nickname must not be empty after applying the rules.");
         }
         return enforced;
     }
