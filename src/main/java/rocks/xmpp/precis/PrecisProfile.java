@@ -199,7 +199,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
             char mapping = (char) (c - '\uCE75');
             WIDTH_MAP.put(c, mapping);
         }
-        // YO to YU
+        // YO - YU
         for (char c = '\uffd2'; c <= '\uFFD7'; c++) {
             char mapping = (char) (c - '\uCE77');
             WIDTH_MAP.put(c, mapping);
