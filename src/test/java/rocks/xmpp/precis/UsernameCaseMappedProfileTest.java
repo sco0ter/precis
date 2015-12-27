@@ -174,4 +174,16 @@ public class UsernameCaseMappedProfileTest {
         CharSequence b = USERNAME_CASE_MAPPED.enforce("ab");
         Assert.assertEquals(a, b);
     }
+
+    @Test(enabled = false)
+    public void testPerformance() {
+        int n = 1000000;
+        long c = 0;
+        for (int i = 0; i < n; i++) {
+            long nano = System.nanoTime();
+            USERNAME_CASE_MAPPED.enforce("äääääääääääääääääääääääääääääääääääääääääääääää");
+            c += System.nanoTime() - nano;
+        }
+        System.out.println(c / n);
+    }
 }

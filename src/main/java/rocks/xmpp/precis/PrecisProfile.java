@@ -465,8 +465,8 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      */
     static boolean hasCompatibilityEquivalent(final int cp) {
         // toNFKC(cp) != cp
-        String s = new String(Character.toChars(cp));
-        return !Normalizer.normalize(s, Normalizer.Form.NFKC).equals(s);
+        CharSequence s = new String(new int[]{cp}, 0, 1);
+        return !Normalizer.isNormalized(s, Normalizer.Form.NFKC);
     }
 
     /**
