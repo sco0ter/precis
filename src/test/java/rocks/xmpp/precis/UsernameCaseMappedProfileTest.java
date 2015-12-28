@@ -47,8 +47,6 @@ public class UsernameCaseMappedProfileTest {
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C2"), "\u03C3");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u0049"), "\u0069");
 
-        // TODO Check
-        //Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03D2"), "\u03C5");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03B0"), "\u03B0");
     }
 
@@ -71,7 +69,6 @@ public class UsernameCaseMappedProfileTest {
     @Test
     public void testPrintableCharacters() {
         USERNAME_CASE_MAPPED.enforce("\u0021");
-        USERNAME_CASE_MAPPED.enforce("\u007E");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
@@ -121,7 +118,7 @@ public class UsernameCaseMappedProfileTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testOtherLetterDigits3() {
-        USERNAME_CASE_MAPPED.prepare("\u16EE"); // No SUPERSCRIPT TWO
+        USERNAME_CASE_MAPPED.prepare("\u00B2"); // No SUPERSCRIPT TWO
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
