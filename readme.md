@@ -27,6 +27,16 @@ This software is licensed under the [MIT license](https://opensource.org/license
 This project is *Maven* based, you can simply build it with common *Maven* commands, e.g.
 > mvn clean install
 
+## Maven Dependency
+
+```xml
+<dependency>
+    <groupId>rocks.xmpp</groupId>
+    <artifactId>precis</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
 # API & Samples
 
 For most cases, all you need to do is to choose an existing profile from the `PrecisProfiles` class and then prepare or enforce a string:
