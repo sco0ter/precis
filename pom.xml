@@ -29,7 +29,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>precis</artifactId>
     <groupId>rocks.xmpp</groupId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>PRECIS Framework</name>
     <description>Preparation, Enforcement, and Comparison of Internationalized Strings (RFC 7564, RFC 7613, RFC 7700)
     </description>
@@ -125,7 +125,7 @@
                 <version>2.2</version>
                 <inherited>false</inherited>
                 <configuration>
-                    <newVersion>0.2.0-SNAPSHOT</newVersion>
+                    <newVersion>0.1.0</newVersion>
                     <generateBackupPoms>false</generateBackupPoms>
                 </configuration>
                 <executions>
