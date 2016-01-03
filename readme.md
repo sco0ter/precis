@@ -29,6 +29,8 @@ This project is *Maven* based, you can simply build it with common *Maven* comma
 
 ## Maven Dependency
 
+[![Maven Central](http://img.shields.io/maven-central/v/rocks.xmpp/precis.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/rocks.xmpp/precis)
+
 ```xml
 <dependency>
     <groupId>rocks.xmpp</groupId>
