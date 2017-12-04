@@ -67,8 +67,10 @@ public class NicknameProfileTest {
         Assert.assertEquals(NICKNAME.compare("foo bar", "foo bar"), 0);
         Assert.assertEquals(NICKNAME.compare("\u03A3", "\u03C3"), 0);
         Assert.assertEquals(NICKNAME.compare("\u03C3", "\u03C3"), 0);
-        Assert.assertEquals(NICKNAME.compare("\u03C2", "\u03C3"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u03C2", "\u03C2"), 0);
         Assert.assertEquals(NICKNAME.compare("\u265A", "\u265A"), 0);
+        Assert.assertEquals(NICKNAME.compare("\u03AB", "\u03CB"), 0); // GREEK SMALL LETTER UPSILON WITH DIALYTIKA
+        Assert.assertEquals(NICKNAME.compare("\u221E", "\u221E"), 0);
         Assert.assertEquals(NICKNAME.compare("Richard \u2163", "richard iv"), 0);
     }
 }

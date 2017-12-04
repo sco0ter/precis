@@ -28,7 +28,7 @@ import java.text.Normalizer;
 
 /**
  * @author Christian Schudt
- * @see <a href="https://tools.ietf.org/html/rfc7613#section-4.2">4.2.  OpaqueString Profile</a>
+ * @see <a href="https://tools.ietf.org/html/rfc8265#section-4.2">4.2.  OpaqueString Profile</a>
  */
 final class OpaqueStringProfile extends PrecisProfile {
 
@@ -65,15 +65,17 @@ final class OpaqueStringProfile extends PrecisProfile {
 
     @Override
     protected final CharSequence applyCaseMappingRule(final CharSequence input) {
-        // 3.  Case-Mapping Rule: Uppercase and titlecase characters MUST NOT be
-        // mapped to their lowercase equivalents.
+        // 3.  Case Mapping Rule: There is no case mapping rule (because mapping
+        // uppercase and titlecase code points to their lowercase
+        // equivalents would lead to false accepts and thus to reduced
+        // security).
         return input;
     }
 
     @Override
     protected final CharSequence applyNormalizationRule(final CharSequence input) {
         // 4.  Normalization Rule: Unicode Normalization Form C (NFC) MUST be
-        // applied to all characters.
+        // applied to all strings.
         return Normalizer.normalize(input, Normalizer.Form.NFC);
     }
 

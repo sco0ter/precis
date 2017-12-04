@@ -39,9 +39,14 @@ public class OpaqueStringProfileTest {
         // ASCII space is allowed
         Assert.assertEquals(OPAQUE_STRING.enforce("correct horse battery staple"), "correct horse battery staple");
         Assert.assertEquals(OPAQUE_STRING.enforce("Correct Horse Battery Staple"), "Correct Horse Battery Staple");
-
+        Assert.assertEquals(OPAQUE_STRING.enforce("πßå"), "πßå");
         Assert.assertEquals(OPAQUE_STRING.enforce("Jack of \u2666s"), "Jack of \u2666s");
         Assert.assertEquals(OPAQUE_STRING.enforce("foo\u1680bar"), "foo bar");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testZeroLength() {
+        OPAQUE_STRING.enforce("");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

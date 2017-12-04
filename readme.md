@@ -11,9 +11,9 @@ providing a given string is connected to the wrong account or online resource ba
 
 This library supports the following specifications:
 
-* [RFC 7564](https://tools.ietf.org/html/rfc7564): PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols
-* [RFC 7613](https://tools.ietf.org/html/rfc7613): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords
-* [RFC 7700](https://tools.ietf.org/html/rfc7700): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames
+* [RFC 8264](https://tools.ietf.org/html/rfc8264): PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols
+* [RFC 8265](https://tools.ietf.org/html/rfc8265): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Usernames and Passwords
+* [RFC 8266](https://tools.ietf.org/html/rfc8266): Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames
 * [RFC 5893](https://tools.ietf.org/html/rfc5893): Right-to-Left Scripts for Internationalized Domain Names for Applications (IDNA)
 
 **PRECIS** obsoletes Stringprep ([RFC 3454](https://tools.ietf.org/html/rfc3454)) and this library obsoletes software like [Libidn's Stringprep class](http://www.gnu.org/software/libidn/javadoc/gnu/inet/encoding/Stringprep.html).
@@ -50,7 +50,7 @@ PrecisProfile profile3 = PrecisProfiles.OPAQUE_STRING;
 PrecisProfile profile4 = PrecisProfiles.NICKNAME;
 ```
 
-`PrecisProfile` is an abstract class, which you could derive from for defining your custom profile (which however is [discouraged](https://tools.ietf.org/html/rfc7564#section-5.1) by RFC 7564).
+`PrecisProfile` is an abstract class, which you could derive from for defining your custom profile (which however is [discouraged](https://tools.ietf.org/html/rfc8264#section-5.1) by RFC 8264).
 
 **[JavaDoc can be found here.](http://sco0ter.bitbucket.org/precis/)**
 

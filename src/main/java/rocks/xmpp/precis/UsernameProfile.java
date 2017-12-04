@@ -31,7 +31,7 @@ import java.text.Normalizer;
  * The base class for user name profiles.
  *
  * @author Christian Schudt
- * @see <a href="https://tools.ietf.org/html/rfc7613#section-3">3.  Usernames</a>
+ * @see <a href="https://tools.ietf.org/html/rfc8265#section-3">3.  Usernames</a>
  */
 final class UsernameProfile extends PrecisProfile {
 
@@ -44,18 +44,22 @@ final class UsernameProfile extends PrecisProfile {
 
     @Override
     public final String prepare(final CharSequence input) {
-        // An entity that prepares a string according to this profile MUST first
-        // map fullwidth and halfwidth characters to their decomposition
-        // mappings (see Unicode Standard Annex #11 [UAX11]).
-        final CharSequence mapped = widthMap(input);
+        // 1. Apply the width mapping rule specified in Section 3.4.1.  It is
+        // necessary to apply the rule at this point because otherwise the
+        // PRECIS "HasCompat" category specified in Section 9.17 of
+        // [RFC8264] would forbid fullwidth and halfwidth code points.
+        final CharSequence mapped = applyWidthMappingRule(input);
 
-        // ensure that the string consists only of Unicode code points that conform to the PRECIS IdentifierClass.
+        // 2. Ensure that the string consists only of Unicode code points that conform to the PRECIS IdentifierClass.
         return super.prepare(mapped);
     }
 
     @Override
     public final String enforce(final CharSequence input) {
-        final String enforced = super.enforce(input);
+        // 1.  Case Mapping Rule
+        // 2.  Normalization Rule
+        // 3.  Directionality Rule
+        final String enforced = applyDirectionalityRule(applyNormalizationRule(applyCaseMappingRule(prepare(input)))).toString();
         // A username MUST NOT be zero bytes in length. This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {
@@ -67,8 +71,9 @@ final class UsernameProfile extends PrecisProfile {
 
     @Override
     protected final CharSequence applyWidthMappingRule(final CharSequence input) {
-        // 1. Width-Mapping Rule: Applied as part of preparation (see above).
-        return input;
+        // 1. Width Mapping Rule: Map fullwidth and halfwidth code points to
+        // their decomposition mappings (see Unicode Standard Annex #11 [UAX11]).
+        return widthMap(input);
     }
 
     @Override
@@ -79,27 +84,27 @@ final class UsernameProfile extends PrecisProfile {
 
     @Override
     protected final CharSequence applyCaseMappingRule(final CharSequence input) {
-        // 3.  Case-Mapping Rule: Uppercase and titlecase characters MUST NOT be
-        // mapped to their lowercase equivalents;
+        // 3. Case Mapping Rule: There is no case mapping rule.
 
-        // 3.  Case-Mapping Rule: Uppercase and titlecase characters MUST be
-        // mapped to their lowercase equivalents, preferably using Unicode
-        // Default Case Folding as defined in the Unicode Standard
-        return caseMapped ? caseFold(input) : input;
+        // 3.  Case Mapping Rule: Map uppercase and titlecase code points to
+        // their lowercase equivalents, preferably using the Unicode
+        // toLowerCase() operation as defined in the Unicode Standard [Unicode]
+        return caseMapped ? caseMap(input) : input;
     }
 
     @Override
     protected final CharSequence applyNormalizationRule(final CharSequence input) {
-        // 4.  Normalization Rule: Unicode Normalization Form C (NFC) MUST be applied to all characters.
+        // 4.  Normalization Rule: Apply Unicode Normalization Form C (NFC) to all strings.
         return Normalizer.normalize(input, Normalizer.Form.NFC);
     }
 
     @Override
     protected final CharSequence applyDirectionalityRule(final CharSequence input) {
-        // 5.  Directionality Rule: Applications MUST apply the "Bidi Rule"
-        // defined in [RFC5893] to strings that contain right-to-left
-        // characters (i.e., each of the six conditions of the Bidi Rule
-        // must be satisfied).
+        // 5. Directionality Rule: Apply the "Bidi Rule" defined in [RFC5893]
+        // to strings that contain right-to-left code points (i.e., each of
+        // the six conditions of the Bidi Rule must be satisfied); for
+        // strings that do not contain right-to-left code points, there is
+        // no special processing for directionality.
         if (Bidi.requiresBidi(input.toString().toCharArray(), 0, input.length())) {
             checkBidiRule(input);
         }

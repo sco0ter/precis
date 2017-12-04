@@ -27,10 +27,10 @@ package rocks.xmpp.precis;
 import java.text.Normalizer;
 
 /**
- * The implementation of the PRECIS: Nickname Profile, RFC 7700.
+ * The implementation of the PRECIS: Nickname Profile, RFC 8266.
  *
  * @author Christian Schudt
- * @see <a href="https://tools.ietf.org/html/rfc7700">Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames</a>
+ * @see <a href="https://tools.ietf.org/html/rfc8266">Preparation, Enforcement, and Comparison of Internationalized Strings Representing Nicknames</a>
  */
 final class NicknameProfile extends PrecisProfile {
 
@@ -41,14 +41,13 @@ final class NicknameProfile extends PrecisProfile {
     @Override
     public final String enforce(final CharSequence input) {
         // An entity that performs enforcement according to this profile MUST
-        // prepare a string as described in Section 2.2 and MUST also apply the
-        // following rules specified in Section 2.1 in the order shown:
+        // prepare an input string as described in Section 2.2 and MUST also
+        // apply the following rules specified in Section 2.1 in the order
+        // shown:
 
         // 1.  Additional Mapping Rule
         // 2.  Normalization Rule
-        // 3.  Directionality Rule
-
-        final String enforced = applyDirectionalityRule(applyNormalizationRule(applyAdditionalMappingRule(prepare(input)))).toString();
+        final String enforced = applyNormalizationRule(applyAdditionalMappingRule(prepare(input))).toString();
 
         // After all of the foregoing rules have been enforced, the entity MUST
         // ensure that the nickname is not zero bytes in length (this is done
@@ -68,7 +67,7 @@ final class NicknameProfile extends PrecisProfile {
      * @param o1 The first string.
      * @param o2 The second string.
      * @return 0 of both strings are equal with regard to this profile, otherwise the comparison result.
-     * @see <a href="https://tools.ietf.org/html/rfc7700#section-2.4">2.4.  Comparison</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8266#section-2.4">2.4.  Comparison</a>
      */
     @Override
     public final int compare(CharSequence o1, CharSequence o2) {
@@ -83,17 +82,15 @@ final class NicknameProfile extends PrecisProfile {
         // 1.  Additional Mapping Rule
         // 2.  Case Mapping Rule
         // 3.  Normalization Rule
-        // 4.  Directionality Rule
-        return applyDirectionalityRule(
-                applyNormalizationRule(
+        return applyNormalizationRule(
                         applyCaseMappingRule(
                                 applyAdditionalMappingRule(
-                                        prepare(input))))).toString();
+                                        prepare(input)))).toString();
     }
 
     @Override
     protected final CharSequence applyWidthMappingRule(final CharSequence input) {
-        // 1.  Width Mapping Rule: There is no width-mapping rule
+        // 1.  Width Mapping Rule: There is no width mapping rule
         return input;
     }
 
@@ -102,50 +99,36 @@ final class NicknameProfile extends PrecisProfile {
         // 2.  Additional Mapping Rule: The additional mapping rule consists of
         // the following sub-rules.
 
-        // 1.  Any instances of non-ASCII space MUST be mapped to ASCII
-        // space (U+0020); a non-ASCII space is any Unicode code point
-        // having a general category of "Zs", naturally with the
-        // exception of U+0020.
+        // a.  Map any instances of non-ASCII space to SPACE (U+0020); a
+        // non-ASCII space is any Unicode code point having a general
+        // category of "Zs", naturally with the exception of SPACE
+        // (U+0020).  (The inclusion of only ASCII space prevents
+        // confusion with various non-ASCII space code points, many of
+        // which are difficult to reproduce across different input
+        // methods.)
         final String mapped = WHITESPACE.matcher(input).replaceAll(" ");
 
-        // 2.  Any instances of the ASCII space character at the beginning
-        // or end of a nickname MUST be removed (e.g., "stpeter " is
-        // mapped to "stpeter").
+        // b. Remove any instances of the ASCII space character at the
+        // beginning or end of a nickname (e.g., "stpeter " is mapped to
+        // "stpeter").
         final String trimmed = mapped.trim();
 
-        // 3.  Interior sequences of more than one ASCII space character
-        // MUST be mapped to a single ASCII space character (e.g.,
-        // "St  Peter" is mapped to "St Peter").
+        // c. Map interior sequences of more than one ASCII space character
+        // to a single ASCII space character (e.g., "St  Peter" is
+        // mapped to "St Peter").
         return trimmed.replaceAll("[ ]+", " ");
     }
 
     @Override
     protected final CharSequence applyCaseMappingRule(final CharSequence input) {
-
-        // 3.  Case Mapping Rule: Uppercase and titlecase characters MUST be
-        // mapped to their lowercase equivalents using Unicode Default Case
-        // Folding as defined in the Unicode Standard [Unicode] (at the time
-        // of this writing, the algorithm is specified in Chapter 3 of
-        // [Unicode7.0]).  In applications that prohibit conflicting
-        // nicknames, this rule helps to reduce the possibility of confusion
-        // by ensuring that nicknames differing only by case (e.g.,
-        // "stpeter" vs. "StPeter") would not be presented to a human user
-        // at the same time.
-        return caseFold(input);
+        // 3.  Case Mapping Rule: Apply the Unicode toLowerCase() operation, as
+        // defined in the Unicode Standard
+        return caseMap(input);
     }
 
     @Override
     protected final CharSequence applyNormalizationRule(final CharSequence input) {
-
-        // 4.  Normalization Rule: The string MUST be normalized using Unicode
-        // Normalization Form KC (NFKC).  Because NFKC is more "aggressive"
-        // in finding matches than other normalization forms (in the
-        // terminology of Unicode, it performs both canonical and
-        // compatibility decomposition before recomposing code points), this
-        // rule helps to reduce the possibility of confusion by increasing
-        // the number of characters that would match (e.g., U+2163 ROMAN
-        // NUMERAL FOUR would match the combination of U+0049 LATIN CAPITAL
-        // LETTER I and U+0056 LATIN CAPITAL LETTER V).
+        // 4.  Normalization Rule: Apply Unicode Normalization Form KC.
         return Normalizer.normalize(input, Normalizer.Form.NFKC);
     }
 

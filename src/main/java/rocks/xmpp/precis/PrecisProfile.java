@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 /**
  * This is the base class for a PRECIS profile. A profile defines a set of rules (width mapping, additional mapping, case mapping, normalization and directionality) and uses one of two string classes, IdentifierClass or FreeformClass, which define the allowed and disallowed characters.
- * <p/>
+ * <p>
  * There are three basic use cases you can do with this class:
  * <ul>
  * <li>{@linkplain #prepare(CharSequence) Preparation}: entails only ensuring that the characters in an
@@ -48,11 +48,11 @@ import java.util.regex.Pattern;
  * strings, for the purpose of determining if the two strings are
  * equivalent.</li>
  * </ul>
- * <p/>
+ * <p>
  *
  * @author Christian Schudt
- * @see <a href="https://tools.ietf.org/html/rfc7564#section-4">4.  String Classes</a>
- * @see <a href="https://tools.ietf.org/html/rfc7564#section-5">5.  Profiles</a>
+ * @see <a href="https://tools.ietf.org/html/rfc8264#section-4">4.  String Classes</a>
+ * @see <a href="https://tools.ietf.org/html/rfc8264#section-5">5.  Profiles</a>
  * @see PrecisProfiles
  */
 public abstract class PrecisProfile implements Comparator<CharSequence> {
@@ -243,7 +243,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is a letter or digit character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.1">9.1.  LetterDigits (A)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.1">9.1.  LetterDigits (A)</a>
      */
     private static boolean isLetterDigit(final int cp) {
         // Ll, Lu, Lo, Nd, Lm, Mn, Mc
@@ -262,7 +262,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is backwards compatible.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.6">9.6.  Exceptions (F)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.6">9.6.  Exceptions (F)</a>
      */
     private static boolean isExceptionallyValid(final int cp) {
         // PVALID -- Would otherwise have been DISALLOWED
@@ -281,7 +281,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is backwards compatible.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.6">9.6.  Exceptions (F)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.6">9.6.  Exceptions (F)</a>
      */
     private static boolean isExceptionallyDisallowed(final int cp) {
         // 0640; DISALLOWED # ARABIC TATWEEL
@@ -302,7 +302,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is backwards compatible.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.7">9.7.  BackwardCompatible (G)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.7">9.7.  BackwardCompatible (G)</a>
      */
     private static boolean isBackwardsCompatible(final int cp) {
         // Currently this category consists of the empty set, therefore return false.
@@ -314,7 +314,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is a join control character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.8">9.8.  JoinControl (H)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.8">9.8.  JoinControl (H)</a>
      */
     private static boolean isJoinControl(final int cp) {
         // U+200C ZERO WIDTH NON-JOINER
@@ -326,7 +326,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Returns true if the code point is an old hangul jamo character.
      *
      * @return If the code point is an old hangul jamo character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.9">9.9.  OldHangulJamo (I)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.9">9.9.  OldHangulJamo (I)</a>
      * @see <a href="http://www.unicode.org/versions/Unicode8.0.0/ch18.pdf">Unicode Standard, Chapter 18</a>
      */
     private static boolean isOldHangulJamo(final int cp) {
@@ -342,7 +342,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Returns true if the code point is unassigned.
      *
      * @return If the code point is unassigned.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.10">9.10.  Unassigned (J)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.10">9.10.  Unassigned (J)</a>
      */
     static boolean isUnassigned(final int cp) {
         // General_Category(cp) is in {Cn} and
@@ -354,7 +354,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Returns true if the code point is in the ASCII7 category.
      *
      * @return If the  code point is in the ASCII7 category.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.11">9.11.  ASCII7 (K)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.11">9.11.  ASCII7 (K)</a>
      */
     private static boolean isASCII7(final int cp) {
         // cp is in {0021..007E}
@@ -365,7 +365,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Returns true if the code point is a control character.
      *
      * @return If the  code point is a control character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.12">9.12.  Controls (L)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.12">9.12.  Controls (L)</a>
      */
     private static boolean isControl(final int cp) {
         return Character.isISOControl(cp);
@@ -400,7 +400,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Returns true if the code point is ignorable
      *
      * @return If the  code point is ignorable.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.13">9.13.  PrecisIgnorableProperties (M)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.13">9.13.  PrecisIgnorableProperties (M)</a>
      */
     private static boolean isIgnorable(final int cp) {
         // Default_Ignorable_Code_Point(cp) = True or
@@ -413,7 +413,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is a space character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.14">9.14.  Spaces (N)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.14">9.14.  Spaces (N)</a>
      */
     private static boolean isSpace(final int cp) {
         // Zs
@@ -426,7 +426,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is a symbol character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.15">9.15.  Symbols (O)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.15">9.15.  Symbols (O)</a>
      */
     private static boolean isSymbol(final int cp) {
         // Sm, Sc, Sk, So
@@ -442,7 +442,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is a punctuation character.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.16">9.16.  Punctuation (P)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.16">9.16.  Punctuation (P)</a>
      */
     private static boolean isPunctuation(final int cp) {
         // Pc, Pd, Ps, Pe, Pi, Pf, Po
@@ -461,7 +461,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is in in the category "HasCompat".
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.17">9.17.  HasCompat (Q)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.17">9.17.  HasCompat (Q)</a>
      */
     static boolean hasCompatibilityEquivalent(final int cp) {
         // toNFKC(cp) != cp
@@ -474,7 +474,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param cp The code point.
      * @return If the code point is in the category of letters and digits other than the "traditional" letters and digits.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-9.18">9.18.  OtherLetterDigits (R)</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.18">9.18.  OtherLetterDigits (R)</a>
      */
     private static boolean isOtherLetterDigit(final int cp) {
         // Lt, Nl, No, Me
@@ -507,8 +507,8 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * @param input The input string.
      * @return The case folded string.
      */
-    protected static CharSequence caseFold(final CharSequence input) {
-        return input.toString().toUpperCase(Locale.US).toLowerCase(Locale.US);
+    protected static CharSequence caseMap(final CharSequence input) {
+        return input.toString().toLowerCase(Locale.US);
     }
 
     /**
@@ -673,30 +673,15 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * particular string class or profile thereof to an individual
      * string, for the purpose of determining if the string can be used
      * in a given protocol slot.
-     * <p/>
+     * <p>
      * This base method first applies the profile rules, then the behavioral rules as per RFC 7564 §7.
      *
      * @param input The input string.
      * @return The output string.
      * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-7">7.  Order of Operations</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-7">7.  Order of Operations</a>
      */
     public String enforce(final CharSequence input) {
-        // TODO:
-        // it is unclear if enforcement
-        // a) should first apply the rules, then check the String class as defined in
-        // https://tools.ietf.org/html/rfc7564#section-7
-        // -- or --
-        // b) should first check the String class and then apply the rules as defined in all known profiles.
-
-        // Usually this has no impact, but there's one case, where it has one:
-        // U+212B (ANGSTROM SIGN) in Usernames:
-        // If first checking the IdentifierClass (preparation) it would be disallowed, because it has a compatibility equivalent.
-        // If first applying the rules, it would be normalized with NFC and becomes U+00C5 and then would pass the IdentifierClass check.
-
-        // RFC 7613 introduced a workaround for the preparation by applying width-mapping as part of it, but it seems as if NFC normalization has
-        // been overlooked.
-        // As per Peter Saint-Andre, the first approach is desirable, so let's stick to it.
         return prepare(applyDirectionalityRule(
                 applyNormalizationRule(
                         applyCaseMappingRule(
@@ -725,52 +710,56 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param input The input string.
      * @return The width-mapped string.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-5.2.1">5.2.1.  Width Mapping Rule</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.1">5.2.1.  Width Mapping Rule</a>
      */
     protected abstract CharSequence applyWidthMappingRule(CharSequence input);
 
     /**
      * The additional mapping rule of a profile specifies whether additional
      * mappings are performed on the characters of a string, such as:
-     * <p/>
+     * <p>
      * Mapping of delimiter characters (such as '@', ':', '/', '+',
      * and '-')
-     * <p/>
+     * <p>
      * Mapping of special characters (e.g., non-ASCII space characters to
      * ASCII space or control characters to nothing).
      *
      * @param input The input string.
      * @return The mapped string.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-5.2.2">5.2.2.  Additional Mapping Rule</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.2">5.2.2.  Additional Mapping Rule</a>
      */
     protected abstract CharSequence applyAdditionalMappingRule(CharSequence input);
 
     /**
      * The case mapping rule of a profile specifies whether case mapping
-     * (instead of case preservation) is performed on the characters of a
-     * string, and how the mapping is applied (e.g., mapping uppercase and
-     * titlecase characters to their lowercase equivalents).
-     * <p/>
+     * (instead of case preservation) is performed on a string and how the
+     * mapping is applied (e.g., mapping uppercase and titlecase code points
+     * to their lowercase equivalents).
+     * <p>
      * If case mapping is desired (instead of case preservation), it is
-     * RECOMMENDED to use Unicode Default Case Folding as defined in the
-     * Unicode Standard
+     * RECOMMENDED to use the Unicode toLowerCase() operation defined in the
+     * Unicode Standard [Unicode].  In contrast to the Unicode toCaseFold()
+     * operation, the toLowerCase() operation is less likely to violate the
+     * "Principle of Least Astonishment", especially when an application
+     * merely wishes to convert uppercase and titlecase code points to their
+     * lowercase equivalents while preserving lowercase code points.
      *
      * @param input The input string.
      * @return The case mapped string.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-5.2.3">5.2.3.  Case Mapping Rule</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.3">5.2.3.  Case Mapping Rule</a>
      */
     protected abstract CharSequence applyCaseMappingRule(CharSequence input);
 
     /**
      * The normalization rule of a profile specifies which Unicode
      * normalization form (D, KD, C, or KC) is to be applied.
-     * <p/>
+     * <p>
      * In accordance with [RFC5198], normalization form C (NFC) is
      * RECOMMENDED.
      *
      * @param input The input string.
      * @return The normalized string.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-5.2.4">5.2.4.  Normalization Rule</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.4">5.2.4.  Normalization Rule</a>
      */
     protected abstract CharSequence applyNormalizationRule(CharSequence input);
 
@@ -787,7 +776,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      *
      * @param input The input string.
      * @return The output string.
-     * @see <a href="https://tools.ietf.org/html/rfc7564#section-5.2.5">5.2.5.  Directionality Rule</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.5">5.2.5.  Directionality Rule</a>
      */
     protected abstract CharSequence applyDirectionalityRule(CharSequence input);
 }

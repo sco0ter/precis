@@ -40,11 +40,11 @@ public class UsernameCaseMappedProfileTest {
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("juliet@example.com"), "juliet@example.com");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("fussball"), "fussball");
 
-        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("fu\u00DFball"), "fussball");
+        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("fu\u00DFball"), "fu\u00DFball");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C0"), "\u03C0");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03A3"), "\u03C3");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C3"), "\u03C3");
-        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C2"), "\u03C3");
+        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C2"), "\u03C2");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u0049"), "\u0069");
 
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03B0"), "\u03B0");
@@ -53,6 +53,16 @@ public class UsernameCaseMappedProfileTest {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testSpaceCharacters() {
         USERNAME_CASE_MAPPED.enforce("foo bar");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testRomanFour() {
+        USERNAME_CASE_MAPPED.enforce("henry\u2163");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testInfinity() {
+        USERNAME_CASE_MAPPED.enforce("\u221E");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
@@ -133,11 +143,9 @@ public class UsernameCaseMappedProfileTest {
 
     @Test
     public void testCompositeCharactersAndCombiningSequence() {
-        CharSequence ang = USERNAME_CASE_MAPPED.enforce("\u212B"); // angstrom sign
         CharSequence a = USERNAME_CASE_MAPPED.enforce("\u0041\u030A"); // A + ring
         CharSequence b = USERNAME_CASE_MAPPED.enforce("\u00C5");       // A with ring
         Assert.assertEquals(a, b);
-        Assert.assertEquals(a, ang);
 
         CharSequence c = USERNAME_CASE_MAPPED.enforce("\u0063\u0327"); // c + cedille
         CharSequence d = USERNAME_CASE_MAPPED.enforce("\u00E7");       // c cedille
@@ -146,16 +154,6 @@ public class UsernameCaseMappedProfileTest {
         CharSequence e = USERNAME_CASE_MAPPED.enforce("\u0052\u030C");
         CharSequence f = USERNAME_CASE_MAPPED.enforce("\u0158");
         Assert.assertEquals(e, f);
-    }
-
-    @Test
-    public void testNFCOnlyNormalization() {
-        String f = "\u1E9B"; // LATIN SMALL LETTER LONG S WITH DOT ABOVE
-        String s = "\u1E61"; // LATIN SMALL LETTER S WITH DOT ABOVE
-        CharSequence a = USERNAME_CASE_MAPPED.enforce(f);
-        CharSequence b = USERNAME_CASE_MAPPED.enforce(s);
-        // Should not be equal (when only NFC is applied), but should be equal after case folding
-        Assert.assertEquals(a, b);
     }
 
     @Test

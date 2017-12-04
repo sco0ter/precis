@@ -25,7 +25,7 @@
 package rocks.xmpp.precis;
 
 /**
- * This class provides common PRECIS profiles, mainly specified by <a href="https://tools.ietf.org/html/rfc7613">Preparation, Enforcement, and Comparison of Internationalized Strings
+ * This class provides common PRECIS profiles, mainly specified by <a href="https://tools.ietf.org/html/rfc8265">Preparation, Enforcement, and Comparison of Internationalized Strings
  * Representing Usernames and Passwords</a> (RFC 7613). Each profile offers methods for preparation, enforcement and comparison of Unicode strings.
  * <h2>Preparation</h2>
  * Preparation ensures, that a string contains only valid characters, but usually does not apply any mapping rules.
@@ -76,33 +76,33 @@ public final class PrecisProfiles {
 
     /**
      * The "UsernameCaseMapped Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc8265">RFC 8265</a>.
      *
-     * @see <a href="https://tools.ietf.org/html/rfc7613#section-3.2">3.2.  UsernameCaseMapped Profile</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8265#section-3.3">3.3.  UsernameCaseMapped Profile</a>
      */
     public final static PrecisProfile USERNAME_CASE_MAPPED = new UsernameProfile(true);
 
     /**
      * The "UsernameCasePreserved Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc8265">RFC 8265</a>.
      *
-     * @see <a href="https://tools.ietf.org/html/rfc7613#section-3.3">3.3.  UsernameCasePreserved Profile</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8265#section-3.4">3.4.  UsernameCasePreserved Profile</a>
      */
     public static final PrecisProfile USERNAME_CASE_PRESERVED = new UsernameProfile(false);
 
     /**
      * The "OpaqueString Profile" specified in "Preparation, Enforcement, and Comparison of Internationalized Strings
-     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc7613">RFC 7613</a>.
+     * Representing Usernames and Passwords", <a href="https://tools.ietf.org/html/rfc8265">RFC 8265</a>.
      *
-     * @see <a href="https://tools.ietf.org/html/rfc7613#section-4.2">4.2.  OpaqueString Profile</a>
+     * @see <a href="https://tools.ietf.org/html/rfc8265#section-4.2">4.2.  OpaqueString Profile</a>
      */
     public static final PrecisProfile OPAQUE_STRING = new OpaqueStringProfile();
 
     /**
      * The "Nickname Profile" specified in "Preparation, Enforcement, and Comparison
-     * of Internationalized Strings Representing Nicknames", <a href="https://tools.ietf.org/html/rfc7700">RFC 7700</a>.
+     * of Internationalized Strings Representing Nicknames", <a href="https://tools.ietf.org/html/rfc8266">RFC 8266</a>.
      *
-     * @see <a href="https://tools.ietf.org/html/rfc7700">Preparation, Enforcement, and Comparison of Internationalized Strings
+     * @see <a href="https://tools.ietf.org/html/rfc8266">Preparation, Enforcement, and Comparison of Internationalized Strings
      * Representing Nicknames</a>
      */
     public static final PrecisProfile NICKNAME = new NicknameProfile();
