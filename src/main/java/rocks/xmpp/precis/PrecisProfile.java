@@ -294,7 +294,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
         // 3034; DISALLOWED # VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HA
         // 3035; DISALLOWED # VERTICAL KANA REPEAT MARK LOWER HALF
         // 303B; DISALLOWED # VERTICAL IDEOGRAPHIC ITERATION MARK
-        return cp == 0x0640 || cp == 0x07FA || cp == 0x302E || cp == 0x302F || cp >= 0x3031 && cp <= 0x3035 || cp == 0x303B;
+        return cp == 0x0640 || cp == 0x07FA || cp == 0x302E || cp == 0x302F || (cp >= 0x3031 && cp <= 0x3035) || cp == 0x303B;
     }
 
     /**
@@ -333,9 +333,9 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
         // Hangul Jamo: U+1100–U+11FF
         // Hangul Jamo Extended-A: U+A960–U+A97F
         // Hangul Jamo Extended-B: U+D7B0–U+D7FF
-        return cp >= 0x1100 && cp <= 0x11FF
-                || cp >= 0xA960 && cp <= 0xA97F
-                || cp >= 0xD7B0 && cp <= 0xD7FF;
+        return (cp >= 0x1100 && cp <= 0x11FF)
+                || (cp >= 0xA960 && cp <= 0xA97F)
+                || (cp >= 0xD7B0 && cp <= 0xD7FF);
     }
 
     /**
@@ -378,22 +378,22 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
         return cp == 0x00AD
                 || cp == 0x034F
                 || cp == 0x061C
-                || cp >= 0x115F && cp <= 0x1160
-                || cp >= 0x17B4 && cp <= 0x17B5
-                || cp >= 0x180B && cp <= 0x180E
-                || cp >= 0x200B && cp <= 0x200F
-                || cp >= 0x202A && cp <= 0x202E
-                || cp >= 0x2060 && cp <= 0x206F
+                || (cp >= 0x115F && cp <= 0x1160)
+                || (cp >= 0x17B4 && cp <= 0x17B5)
+                || (cp >= 0x180B && cp <= 0x180E)
+                || (cp >= 0x200B && cp <= 0x200F)
+                || (cp >= 0x202A && cp <= 0x202E)
+                || (cp >= 0x2060 && cp <= 0x206F)
                 || cp == 0x3164
-                || cp >= 0xFE00 && cp <= 0xFE0F
+                || (cp >= 0xFE00 && cp <= 0xFE0F)
                 || cp == 0xFEFF
                 || cp == 0xFFA0
-                || cp >= 0xFFF0 && cp <= 0xFFF8;
+                || (cp >= 0xFFF0 && cp <= 0xFFF8);
     }
 
     private static boolean isNonCharacter(final int cp) {
-        return cp >= 0xFDD0 && cp <= 0xFDEF
-                || cp >= 0xFFFE && cp <= 0xFFFF;
+        return (cp >= 0xFDD0 && cp <= 0xFDEF)
+                || (cp >= 0xFFFE && cp <= 0xFFFF);
     }
 
     /**
