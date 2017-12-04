@@ -34,10 +34,6 @@
     <description>Preparation, Enforcement, and Comparison of Internationalized Strings (RFC 8264, RFC 8265, RFC 8266)
     </description>
 
-    <prerequisites>
-        <maven>3.0.4</maven>
-    </prerequisites>
-
     <!-- Project Site -->
     <url>http://xmpp.rocks</url>
 
