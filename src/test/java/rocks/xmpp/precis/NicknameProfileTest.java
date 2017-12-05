@@ -73,4 +73,9 @@ public class NicknameProfileTest {
         Assert.assertEquals(NICKNAME.compare("\u221E", "\u221E"), 0);
         Assert.assertEquals(NICKNAME.compare("Richard \u2163", "richard iv"), 0);
     }
+
+    @Test
+    public void testComparison() {
+        Assert.assertEquals(NICKNAME.toComparableString("Foo Bar "), NICKNAME.toComparableString("foo bar"));
+    }
 }

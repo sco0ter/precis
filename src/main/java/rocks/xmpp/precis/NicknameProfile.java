@@ -73,10 +73,20 @@ final class NicknameProfile extends PrecisProfile {
      */
     @Override
     public final int compare(CharSequence o1, CharSequence o2) {
-        return applyRulesForComparison(o1).compareTo(applyRulesForComparison(o2));
+        return toComparableString(o1).compareTo(toComparableString(o2));
     }
 
-    private String applyRulesForComparison(CharSequence input) {
+    /**
+     * Comparison uses different rules than enforcement.
+     * <p>
+     * E.g. "Foo Bar" and "foo bar" would yield the same result. Both comparable string are equal.
+     *
+     * @param input The input string.
+     * @return The comparable string.
+     * @see <a href="https://tools.ietf.org/html/rfc8266#section-2.4">2.4.  Comparison</a>
+     */
+    @Override
+    public String toComparableString(final CharSequence input) {
         // An entity that performs comparison of two strings according to this
         // profile MUST prepare each string as specified in Section 2.2 and MUST
         // apply the following rules specified in Section 2.1 in the order
@@ -85,9 +95,9 @@ final class NicknameProfile extends PrecisProfile {
         // 2.  Case Mapping Rule
         // 3.  Normalization Rule
         return applyNormalizationRule(
-                        applyCaseMappingRule(
-                                applyAdditionalMappingRule(
-                                        prepare(input)))).toString();
+                applyCaseMappingRule(
+                        applyAdditionalMappingRule(
+                                prepare(input)))).toString();
     }
 
     @Override

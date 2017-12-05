@@ -693,17 +693,29 @@ public abstract class PrecisProfile implements Comparator<CharSequence>, Seriali
     }
 
     /**
-     * Compares two strings with each other. The default comparison method {@linkplain #enforce(CharSequence) enforces} the rules of a profile to each string and then compares them.
-     * However, there are exceptions to this approach, like in the Nickname profile, where comparison uses different rules than enforcement.
+     * Compares two strings with each other.
      *
      * @param o1 The first string.
      * @param o2 The second string.
      * @return 0 if the strings are equal, otherwise the comparison result.
      * @throws InvalidCodePointException If the input contains invalid code points (which are disallowed by the underlying Precis String class).
+     * @see #toComparableString(CharSequence)
      */
     @Override
-    public int compare(CharSequence o1, CharSequence o2) {
+    public  int compare(CharSequence o1, CharSequence o2) {
         return enforce(o1).compareTo(enforce(o2));
+    }
+
+    /**
+     * Converts a string to a comparable string. The default comparison method uses the same rules as {@linkplain #enforce(CharSequence) enforcement}.
+     * However, there are exceptions to this approach, like in the Nickname profile, where comparison uses different rules than enforcement.
+     *
+     * @param input The input string.
+     * @return The comparable string.
+     * @see #compare(CharSequence, CharSequence)
+     */
+    public String toComparableString(final CharSequence input) {
+        return enforce(input);
     }
 
     /**
