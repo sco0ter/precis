@@ -34,6 +34,8 @@ import java.text.Normalizer;
  */
 final class NicknameProfile extends PrecisProfile {
 
+    private static final long serialVersionUID = 8561449693996385797L;
+
     NicknameProfile() {
         super(false);
     }

@@ -35,6 +35,8 @@ import java.text.Normalizer;
  */
 final class UsernameProfile extends PrecisProfile {
 
+    private static final long serialVersionUID = 848281423907881855L;
+
     private final boolean caseMapped;
 
     UsernameProfile(boolean caseMapped) {

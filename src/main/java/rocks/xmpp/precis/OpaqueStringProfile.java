@@ -32,6 +32,8 @@ import java.text.Normalizer;
  */
 final class OpaqueStringProfile extends PrecisProfile {
 
+    private static final long serialVersionUID = 3063882108629348960L;
+
     OpaqueStringProfile() {
         super(false);
     }

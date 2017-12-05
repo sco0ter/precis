@@ -24,6 +24,7 @@
 
 package rocks.xmpp.precis;
 
+import java.io.Serializable;
 import java.text.Normalizer;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -55,7 +56,9 @@ import java.util.regex.Pattern;
  * @see <a href="https://tools.ietf.org/html/rfc8264#section-5">5.  Profiles</a>
  * @see PrecisProfiles
  */
-public abstract class PrecisProfile implements Comparator<CharSequence> {
+public abstract class PrecisProfile implements Comparator<CharSequence>, Serializable {
+
+    static final Pattern WHITESPACE = Pattern.compile("\\p{Zs}");
 
     /**
      * Maps full- and half-width characters to their decomposition form.
@@ -78,7 +81,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
      * Used for the Bidi Rule.
      * L, EN, ES, CS, ET, ON, BN, or NSM.
      */
-    private static final int L_EN_ES_CS_ET_ON_BN_NSM = 1 << Character.DIRECTIONALITY_LEFT_TO_RIGHT
+    private static final int L_EN_ES_CS_ET_ON_BN_NSM = 1 // 1 << Character.DIRECTIONALITY_LEFT_TO_RIGHT
             | EN_ES_CS_ET_ON_BN_NSM;
 
     /**
@@ -97,7 +100,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence> {
     private static final int EN_AN = 1 << Character.DIRECTIONALITY_EUROPEAN_NUMBER
             | 1 << Character.DIRECTIONALITY_ARABIC_NUMBER;
 
-    static final Pattern WHITESPACE = Pattern.compile("\\p{Zs}");
+    private static final long serialVersionUID = -8190355872090764571L;
 
     // Key — Original Character
     // Value — Replacement character
