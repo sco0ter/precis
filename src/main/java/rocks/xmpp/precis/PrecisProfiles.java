@@ -26,7 +26,7 @@ package rocks.xmpp.precis;
 
 /**
  * This class provides common PRECIS profiles, mainly specified by <a href="https://tools.ietf.org/html/rfc8265">Preparation, Enforcement, and Comparison of Internationalized Strings
- * Representing Usernames and Passwords</a> (RFC 7613). Each profile offers methods for preparation, enforcement and comparison of Unicode strings.
+ * Representing Usernames and Passwords</a> (RFC 8265). Each profile offers methods for preparation, enforcement and comparison of Unicode strings.
  * <h2>Preparation</h2>
  * Preparation ensures, that a string contains only valid characters, but usually does not apply any mapping rules.
  * <pre>
@@ -49,17 +49,17 @@ package rocks.xmpp.precis;
  * }
  * </pre>
  * <h2>Comparison</h2>
- * Usually you can just use <code>String.equals()</code> on two enforced strings to determine if they are equivalent,
+ * You can just use {@link PrecisProfile#toComparableString(CharSequence)} to check, if two strings compare to each other,
  * e.g.:
  * <pre>
  * {@code
  * PrecisProfile profile = PrecisProfiles.USERNAME_CASE_MAPPED;
- * if (profile.enforce("foobar").equals(profile.enforce("FooBar"))) {
+ * if (profile.toComparableString("foobar").equals(profile.toComparableString("FooBar"))) {
  *     // username already exists.
  * }
  * }
  * </pre>
- * However, using {@link PrecisProfile#compare(CharSequence, CharSequence)} is preferable, because a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 7700):
+ * Or you can use {@link PrecisProfile} as a {@link java.util.Comparator}:
  * <pre>
  * {@code
  * if (profile.compare("foobar", "FooBar") == 0) {
@@ -67,7 +67,7 @@ package rocks.xmpp.precis;
  * }
  * }
  * </pre>
- * Also note that {@link PrecisProfile} implements {@link java.util.Comparator}.
+ * Note that a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 7700).
  *
  * @author Christian Schudt
  * @see PrecisProfile

@@ -23,6 +23,21 @@
  */
 
 /**
- * Provides classes for the PRECIS framework as well as related profiles.
+ * Provides classes for the <a href="https://tools.ietf.org/html/rfc8264">PRECIS framework</a> as well as related profiles.
+ * <ul>
+ * <li><a href="https://tools.ietf.org/html/rfc8265">Preparation, Enforcement, and Comparison of Internationalized Strings
+ * Representing Usernames and Passwords
+ * </a>
+ * <ul>
+ * <li><a href="https://tools.ietf.org/html/rfc8265#section-3.3">UsernameCaseMapped Profile</a></li>
+ * <li><a href="https://tools.ietf.org/html/rfc8265#section-3.4">UsernameCasePreserved Profile</a></li>
+ * <li><a href="https://tools.ietf.org/html/rfc8265#section-4.2">OpaqueString Profile</a></li>
+ * </ul>
+ * </li>
+ * <li><a href="https://tools.ietf.org/html/rfc8266">Preparation, Enforcement, and Comparison of Internationalized Strings
+ * Representing Nicknames</a></li>
+ * </ul>
+ *
+ * @see rocks.xmpp.precis.PrecisProfiles
  */
 package rocks.xmpp.precis;
