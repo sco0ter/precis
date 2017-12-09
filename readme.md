@@ -105,4 +105,5 @@ Or you can use `PrecisProfile` as a `java.util.Comparator`:
 if (profile.compare("foobar", "FooBar") == 0) {
     // username already exists.
 }
+```
 Note that a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 7700).
