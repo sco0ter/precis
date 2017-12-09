@@ -64,19 +64,6 @@ final class NicknameProfile extends PrecisProfile {
     }
 
     /**
-     * Compares two nicknames with each other.
-     *
-     * @param o1 The first string.
-     * @param o2 The second string.
-     * @return 0 of both strings are equal with regard to this profile, otherwise the comparison result.
-     * @see <a href="https://tools.ietf.org/html/rfc8266#section-2.4">2.4.  Comparison</a>
-     */
-    @Override
-    public final int compare(final CharSequence o1, final CharSequence o2) {
-        return toComparableString(o1).compareTo(toComparableString(o2));
-    }
-
-    /**
      * Comparison uses different rules than enforcement.
      * <p>
      * E.g. "Foo Bar" and "foo bar" would yield the same result. Both comparable string are equal.

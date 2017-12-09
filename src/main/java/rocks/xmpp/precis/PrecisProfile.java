@@ -702,8 +702,8 @@ public abstract class PrecisProfile implements Comparator<CharSequence>, Seriali
      * @see #toComparableString(CharSequence)
      */
     @Override
-    public int compare(final CharSequence o1, final CharSequence o2) {
-        return enforce(o1).compareTo(enforce(o2));
+    public final int compare(final CharSequence o1, final CharSequence o2) {
+        return toComparableString(o1).compareTo(toComparableString(o2));
     }
 
     /**
