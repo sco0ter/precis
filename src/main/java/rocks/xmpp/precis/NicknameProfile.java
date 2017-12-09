@@ -72,7 +72,7 @@ final class NicknameProfile extends PrecisProfile {
      * @see <a href="https://tools.ietf.org/html/rfc8266#section-2.4">2.4.  Comparison</a>
      */
     @Override
-    public final int compare(CharSequence o1, CharSequence o2) {
+    public final int compare(final CharSequence o1, final CharSequence o2) {
         return toComparableString(o1).compareTo(toComparableString(o2));
     }
 
@@ -86,7 +86,7 @@ final class NicknameProfile extends PrecisProfile {
      * @see <a href="https://tools.ietf.org/html/rfc8266#section-2.4">2.4.  Comparison</a>
      */
     @Override
-    public String toComparableString(final CharSequence input) {
+    public final String toComparableString(final CharSequence input) {
         // An entity that performs comparison of two strings according to this
         // profile MUST prepare each string as specified in Section 2.2 and MUST
         // apply the following rules specified in Section 2.1 in the order
