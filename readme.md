@@ -93,7 +93,7 @@ If a string contains prohibited code points, e.g. symbols in usernames, a `Inval
 
 ## Comparison
 
-You can use {@link PrecisProfile#toComparableString(CharSequence)} to check, if two strings compare to each other, e.g.:
+You can use `PrecisProfile#toComparableString(CharSequence)` to check, if two strings compare to each other, e.g.:
 ```
 PrecisProfile profile = PrecisProfiles.USERNAME_CASE_MAPPED;
 if (profile.toComparableString("foobar").equals(profile.toComparableString("FooBar"))) {
