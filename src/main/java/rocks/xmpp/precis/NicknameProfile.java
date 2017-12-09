@@ -49,7 +49,7 @@ final class NicknameProfile extends PrecisProfile {
 
         // 1.  Additional Mapping Rule
         // 2.  Normalization Rule
-        final String enforced = applyNormalizationRule(applyAdditionalMappingRule(prepare(input))).toString();
+        final String enforced = prepare(applyNormalizationRule(applyAdditionalMappingRule(input)));
 
         // After all of the foregoing rules have been enforced, the entity MUST
         // ensure that the nickname is not zero bytes in length (this is done
@@ -94,10 +94,7 @@ final class NicknameProfile extends PrecisProfile {
         // 1.  Additional Mapping Rule
         // 2.  Case Mapping Rule
         // 3.  Normalization Rule
-        return applyNormalizationRule(
-                applyCaseMappingRule(
-                        applyAdditionalMappingRule(
-                                prepare(input)))).toString();
+        return super.enforce(input);
     }
 
     @Override

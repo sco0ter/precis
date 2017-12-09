@@ -61,7 +61,7 @@ final class UsernameProfile extends PrecisProfile {
         // 1.  Case Mapping Rule
         // 2.  Normalization Rule
         // 3.  Directionality Rule
-        final String enforced = applyDirectionalityRule(applyNormalizationRule(applyCaseMappingRule(prepare(input)))).toString();
+        final String enforced = super.enforce(input);
         // A username MUST NOT be zero bytes in length. This rule is to be
         // enforced after any normalization and mapping of code points.
         if (enforced.isEmpty()) {

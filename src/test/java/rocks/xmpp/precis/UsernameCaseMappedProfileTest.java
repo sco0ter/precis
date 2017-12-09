@@ -143,9 +143,11 @@ public class UsernameCaseMappedProfileTest {
 
     @Test
     public void testCompositeCharactersAndCombiningSequence() {
+        CharSequence ang = USERNAME_CASE_MAPPED.enforce("\u212B"); // angstrom sign
         CharSequence a = USERNAME_CASE_MAPPED.enforce("\u0041\u030A"); // A + ring
         CharSequence b = USERNAME_CASE_MAPPED.enforce("\u00C5");       // A with ring
         Assert.assertEquals(a, b);
+        Assert.assertEquals(a, ang);
 
         CharSequence c = USERNAME_CASE_MAPPED.enforce("\u0063\u0327"); // c + cedille
         CharSequence d = USERNAME_CASE_MAPPED.enforce("\u00E7");       // c cedille
