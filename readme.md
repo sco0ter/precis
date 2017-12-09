@@ -94,14 +94,14 @@ If a string contains prohibited code points, e.g. symbols in usernames, a `Inval
 ## Comparison
 
 You can use `PrecisProfile#toComparableString(CharSequence)` to check, if two strings compare to each other, e.g.:
-```
+```java
 PrecisProfile profile = PrecisProfiles.USERNAME_CASE_MAPPED;
 if (profile.toComparableString("foobar").equals(profile.toComparableString("FooBar"))) {
     // username already exists.
 }
 ```
 Or you can use `PrecisProfile` as a `java.util.Comparator`:
-```
+```java
 if (profile.compare("foobar", "FooBar") == 0) {
     // username already exists.
 }
