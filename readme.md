@@ -52,7 +52,7 @@ PrecisProfile profile4 = PrecisProfiles.NICKNAME;
 
 `PrecisProfile` is an abstract class, which you could derive from for defining your custom profile (which however is [discouraged](https://tools.ietf.org/html/rfc8264#section-5.1) by RFC 8264).
 
-**[JavaDoc can be found here.](http://sco0ter.bitbucket.org/precis/)**
+**[JavaDoc can be found here.](http://sco0ter.bitbucket.io/precis/)**
 
 ## Preparation
 
