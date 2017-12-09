@@ -67,7 +67,7 @@ package rocks.xmpp.precis;
  * }
  * }
  * </pre>
- * Note that a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 7700).
+ * Note that a profile may use different rules during comparison than during enforcement (as the Nickname profile, RFC 8266).
  *
  * @author Christian Schudt
  * @see PrecisProfile
