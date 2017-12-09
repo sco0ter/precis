@@ -30,6 +30,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 
 /**
@@ -795,4 +796,41 @@ public abstract class PrecisProfile implements Comparator<CharSequence>, Seriali
      * @see <a href="https://tools.ietf.org/html/rfc8264#section-5.2.5">5.2.5.  Directionality Rule</a>
      */
     protected abstract CharSequence applyDirectionalityRule(CharSequence input);
+
+    /**
+     * Applying the rules for any given PRECIS profile is not necessarily an idempotent
+     * procedure (e.g., under certain circumstances, such as when Unicode
+     * Normalization Form KC is used, performing Unicode normalization after
+     * case mapping can still yield uppercase characters for certain code
+     * points).  Therefore, an implementation SHOULD apply the rules
+     * repeatedly until the output string is stable; if the output string
+     * does not stabilize after reapplying the rules three (3) additional
+     * times after the first application, the implementation SHOULD
+     * terminate application of the rules and reject the input string as
+     * invalid.
+     * <p>
+     * This method applies the rules once (the first time) and then maximum three additional times.
+     *
+     * @param input The input string.
+     * @param rules The function which applies the rules.
+     * @return The stable output string.
+     * @see <a href="https://tools.ietf.org/html/rfc8264#section-7">7.  Order of Operations</a>
+     */
+    protected final String stabilize(final CharSequence input, final Function<CharSequence, String> rules) {
+        String s1 = rules.apply(input);
+        String s2;
+        for (int i = 0; i < 3; i++) {
+            s2 = rules.apply(s1);
+            if (s1.equals(s2)) {
+                // output string is stable.
+                return s2;
+            }
+            s1 = s2;
+        }
+        // if the output string does not stabilize after
+        // reapplying the rules three (3) additional times after the first
+        // application, the implementation SHOULD terminate application of the
+        // rules and reject the input string as invalid.
+        throw new InvalidCodePointException("Input string did not stabilze after applying the rules three additional times.");
+    }
 }

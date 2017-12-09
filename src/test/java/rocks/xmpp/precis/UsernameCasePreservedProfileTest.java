@@ -39,4 +39,9 @@ public class UsernameCasePreservedProfileTest {
         // Everything else is tested with the UsernameCaseMappedProfileTest.
         Assert.assertEquals(USERNAME_CASE_PRESERVED.enforce("ABC"), "ABC");
     }
+
+    @Test
+    public void testIdempotencyEnforcement() {
+        UsernameCaseMappedProfileTest.testIdempotency(USERNAME_CASE_PRESERVED::enforce);
+    }
 }

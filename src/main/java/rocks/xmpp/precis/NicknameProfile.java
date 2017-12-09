@@ -25,6 +25,7 @@
 package rocks.xmpp.precis;
 
 import java.text.Normalizer;
+import java.util.function.Function;
 
 /**
  * The implementation of the PRECIS: Nickname Profile, RFC 8266.
@@ -49,7 +50,8 @@ final class NicknameProfile extends PrecisProfile {
 
         // 1.  Additional Mapping Rule
         // 2.  Normalization Rule
-        final String enforced = prepare(applyNormalizationRule(applyAdditionalMappingRule(input)));
+        final Function<CharSequence, String> rules = in -> prepare(applyNormalizationRule(applyAdditionalMappingRule(in)));
+        final String enforced = stabilize(input, rules);
 
         // After all of the foregoing rules have been enforced, the entity MUST
         // ensure that the nickname is not zero bytes in length (this is done
@@ -81,7 +83,7 @@ final class NicknameProfile extends PrecisProfile {
         // 1.  Additional Mapping Rule
         // 2.  Case Mapping Rule
         // 3.  Normalization Rule
-        return super.enforce(input);
+        return stabilize(input, super::enforce);
     }
 
     @Override

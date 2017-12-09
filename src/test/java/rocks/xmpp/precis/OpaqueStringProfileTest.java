@@ -53,4 +53,9 @@ public class OpaqueStringProfileTest {
     public void testControlCharacters() {
         OPAQUE_STRING.enforce("my cat is a \u0009by");
     }
+
+    @Test
+    public void testIdempotencyEnforcement() {
+        UsernameCaseMappedProfileTest.testIdempotency(OPAQUE_STRING::enforce);
+    }
 }

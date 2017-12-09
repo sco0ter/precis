@@ -27,6 +27,8 @@ package rocks.xmpp.precis;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.function.Function;
+
 import static rocks.xmpp.precis.PrecisProfiles.USERNAME_CASE_MAPPED;
 
 /**
@@ -182,5 +184,22 @@ public class UsernameCaseMappedProfileTest {
             c += System.nanoTime() - nano;
         }
         System.out.println(c / n);
+    }
+
+    @Test
+    public void testIdempotencyEnforcement() {
+        testIdempotency(USERNAME_CASE_MAPPED::enforce);
+    }
+    
+    static void testIdempotency(Function<CharSequence, String> rules) {
+        for (int cp = Character.MIN_CODE_POINT; cp < Character.MAX_CODE_POINT; cp++) {
+            String input = new String(Character.toChars(cp));
+            try {
+                String applied = rules.apply(input);
+                String applied2 = rules.apply(applied);
+                Assert.assertEquals(applied, applied2);
+            } catch (IllegalArgumentException ignore) {
+            }
+        }
     }
 }

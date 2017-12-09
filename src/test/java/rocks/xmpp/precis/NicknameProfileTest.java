@@ -78,4 +78,14 @@ public class NicknameProfileTest {
     public void testComparison() {
         Assert.assertEquals(NICKNAME.toComparableString("Foo Bar "), NICKNAME.toComparableString("foo bar"));
     }
+
+    @Test
+    public void testIdempotencyEnforcement() {
+        UsernameCaseMappedProfileTest.testIdempotency(NICKNAME::enforce);
+    }
+
+    @Test
+    public void testIdempotencyComparison() {
+        UsernameCaseMappedProfileTest.testIdempotency(NICKNAME::toComparableString);
+    }
 }
