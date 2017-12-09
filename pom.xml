@@ -281,9 +281,8 @@
                                     <goal>jar</goal>
                                 </goals>
                                 <configuration>
-                                    <additionalparam>-Xdoclint:none</additionalparam>
                                     <quiet>true</quiet>
-                                    <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
                                     <includeDependencySources>false</includeDependencySources>
                                     <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
                                     <nodeprecated>false</nodeprecated>
@@ -356,9 +355,8 @@
                             <report>javadoc</report>
                         </reports>
                         <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
                             <quiet>true</quiet>
-                            <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
                             <includeDependencySources>false</includeDependencySources>
                             <includeTransitiveDependencySources>false</includeTransitiveDependencySources>
                             <nodeprecated>false</nodeprecated>

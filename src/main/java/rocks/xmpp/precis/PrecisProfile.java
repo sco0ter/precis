@@ -39,7 +39,6 @@ import java.util.regex.Pattern;
  * <ul>
  * <li>{@linkplain #prepare(CharSequence) Preparation}: entails only ensuring that the characters in an
  * individual string are allowed by the underlying PRECIS string class.</li>
- * </li>
  * <li>{@linkplain #enforce(CharSequence) Enforcement}: entails applying all of the rules specified for a
  * particular string class or profile thereof to an individual
  * string, for the purpose of determining if the string can be used
@@ -491,12 +490,14 @@ public abstract class PrecisProfile implements Comparator<CharSequence>, Seriali
     /**
      * Maps full-width and half-width characters to their decomposition mappings.
      *
+     * @param input The input string.
+     * @return The mapped string.
      * @see <a href="http://unicode.org/charts/PDF/UFF00.pdf">Halfwidth and Fullwidth Forms</a>
      */
-    protected static CharSequence widthMap(CharSequence s) {
-        StringBuilder sb = new StringBuilder(s);
-        for (int i = 0; i < s.length(); i++) {
-            Character c = WIDTH_MAP.get(s.charAt(i));
+    protected static CharSequence widthMap(CharSequence input) {
+        StringBuilder sb = new StringBuilder(input);
+        for (int i = 0; i < input.length(); i++) {
+            Character c = WIDTH_MAP.get(input.charAt(i));
             if (c != null) {
                 sb.setCharAt(i, c);
             }
