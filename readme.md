@@ -35,7 +35,7 @@ This project is *Maven* based, you can simply build it with common *Maven* comma
 <dependency>
     <groupId>rocks.xmpp</groupId>
     <artifactId>precis</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
