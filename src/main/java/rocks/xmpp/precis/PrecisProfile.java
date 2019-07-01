@@ -307,6 +307,7 @@ public abstract class PrecisProfile implements Comparator<CharSequence>, Seriali
      * @return If the code point is backwards compatible.
      * @see <a href="https://tools.ietf.org/html/rfc8264#section-9.7">9.7.  BackwardCompatible (G)</a>
      */
+    @SuppressWarnings("unused")
     private static boolean isBackwardsCompatible(final int cp) {
         // Currently this category consists of the empty set, therefore return false.
         return false;
