@@ -107,6 +107,15 @@ public final class PrecisProfiles {
      */
     public static final PrecisProfile NICKNAME = new NicknameProfile();
 
+    /**
+     * A profile for preparing and enforcing international domain names.
+     * While not an official PRECIS profile, this profiles applies the mapping rules described in <a href="https://tools.ietf.org/html/rfc5895#section-2">RFC 5895 2.  The General Procedure</a>
+     * to a domain name.
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc5895#section-2">RFC 5895 2.  The General Procedure</a>
+     */
+    public static final PrecisProfile IDN = new IDNProfile();
+
     private PrecisProfiles() {
     }
 }
