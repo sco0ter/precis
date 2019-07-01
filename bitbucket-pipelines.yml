@@ -1,0 +1,10 @@
+pipelines:
+  default:
+    - step:
+        image: maven:3-jdk-8
+        script:
+          - mvn clean install
+    - step:
+        image: maven:3-jdk-11
+        script:
+          - mvn clean install
