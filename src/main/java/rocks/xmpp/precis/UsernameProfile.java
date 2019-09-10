@@ -33,7 +33,7 @@ import java.text.Normalizer;
  * @author Christian Schudt
  * @see <a href="https://tools.ietf.org/html/rfc8265#section-3">3.  Usernames</a>
  */
-final class UsernameProfile extends PrecisProfile {
+class UsernameProfile extends PrecisProfile {
 
     private static final long serialVersionUID = 848281423907881855L;
 
@@ -57,7 +57,7 @@ final class UsernameProfile extends PrecisProfile {
     }
 
     @Override
-    public final String enforce(final CharSequence input) {
+    public String enforce(final CharSequence input) {
         // 1.  Case Mapping Rule
         // 2.  Normalization Rule
         // 3.  Directionality Rule

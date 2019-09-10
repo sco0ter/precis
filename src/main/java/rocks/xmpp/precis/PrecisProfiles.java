@@ -116,6 +116,14 @@ public final class PrecisProfiles {
      */
     public static final PrecisProfile IDN = new IDNProfile();
 
+    /**
+     * A profile used to prepare and enforce localparts of XMPP addresses (JIDs), specified in
+     * <a href="https://tools.ietf.org/html/rfc7622">RFC 7622</a>
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7622#section-3.3">RFC 7622 3.3.  Localpart</a>
+     */
+    public static final PrecisProfile XMPP_LOCALPART = new XmppLocalpartProfile();
+
     private PrecisProfiles() {
     }
 }
