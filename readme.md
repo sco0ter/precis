@@ -35,7 +35,7 @@ This project is *Maven* based, you can simply build it with common *Maven* comma
 <dependency>
     <groupId>rocks.xmpp</groupId>
     <artifactId>precis</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -70,7 +70,7 @@ Enforcement applies a set of rules (e.g. Unicode normalization, width-mapping, c
 String enforced = PrecisProfiles.USERNAME_CASE_MAPPED.enforce("UpperCaseUsername"); // => uppercaseusername
 ```
 
-Here, only simple mapping to lower case is applied. But enforcement does more:
+Here, only a simple mapping to lower case is applied. But enforcement does more:
 
 ```java
 String ang = PrecisProfiles.USERNAME_CASE_MAPPED.enforce("\u212B");     // ANGSTROM SIGN
