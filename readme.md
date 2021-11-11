@@ -1,3 +1,5 @@
+[![Precis CI](https://github.com/sco0ter/precis/actions/workflows/maven.yml/badge.svg)](https://github.com/sco0ter/precis/actions/workflows/maven.yml)
+
 A Java implementation of the **"PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols"** and profiles thereof.
 
 # About
