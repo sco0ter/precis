@@ -30,6 +30,8 @@ import org.testng.annotations.Test;
 import static rocks.xmpp.precis.PrecisProfiles.USERNAME_CASE_PRESERVED;
 
 /**
+ * Tests for {@link PrecisProfiles#USERNAME_CASE_PRESERVED}.
+ *
  * @author Christian Schudt
  */
 public class UsernameCasePreservedProfileTest {

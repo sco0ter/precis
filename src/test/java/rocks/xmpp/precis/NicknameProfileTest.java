@@ -30,13 +30,17 @@ import org.testng.annotations.Test;
 import static rocks.xmpp.precis.PrecisProfiles.NICKNAME;
 
 /**
+ * Tests for {@link PrecisProfiles#NICKNAME}.
+ *
  * @author Christian Schudt
  */
 public class NicknameProfileTest {
 
     @Test
     public void shouldReplaceNonAsciiSpaces() {
-        Assert.assertEquals(NICKNAME.enforce("a\u00A0a\u1680a\u2000a\u2001a\u2002a\u2003a\u2004a\u2005a\u2006a\u2007a\u2008a\u2009a\u200Aa\u202Fa\u205Fa\u3000a"), "a a a a a a a a a a a a a a a a a");
+        Assert.assertEquals(NICKNAME.enforce(
+                "a\u00A0a\u1680a\u2000a\u2001a\u2002a\u2003a\u2004a\u2005a\u2006a\u2007a\u2008a\u2009a\u200Aa\u202Fa\u205Fa\u3000a"),
+                "a a a a a a a a a a a a a a a a a");
     }
 
     @Test

@@ -32,6 +32,8 @@ import java.util.function.Function;
 import static rocks.xmpp.precis.PrecisProfiles.USERNAME_CASE_MAPPED;
 
 /**
+ * Tests for {@link PrecisProfiles#USERNAME_CASE_MAPPED}.
+ *
  * @author Christian Schudt
  */
 public class UsernameCaseMappedProfileTest {
@@ -47,7 +49,7 @@ public class UsernameCaseMappedProfileTest {
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03A3"), "\u03C3");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C3"), "\u03C3");
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03C2"), "\u03C2");
-        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u0049"), "\u0069");
+        Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("I"), "i");
 
         Assert.assertEquals(USERNAME_CASE_MAPPED.enforce("\u03B0"), "\u03B0");
     }
@@ -74,13 +76,13 @@ public class UsernameCaseMappedProfileTest {
 
     @Test
     public void testLetterDigits() {
-        USERNAME_CASE_MAPPED.enforce("\u007E");
+        USERNAME_CASE_MAPPED.enforce("~");
         USERNAME_CASE_MAPPED.enforce("a");
     }
 
     @Test
     public void testPrintableCharacters() {
-        USERNAME_CASE_MAPPED.enforce("\u0021");
+        USERNAME_CASE_MAPPED.enforce("!");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
@@ -146,23 +148,23 @@ public class UsernameCaseMappedProfileTest {
     @Test
     public void testCompositeCharactersAndCombiningSequence() {
         CharSequence ang = USERNAME_CASE_MAPPED.enforce("\u212B"); // angstrom sign
-        CharSequence a = USERNAME_CASE_MAPPED.enforce("\u0041\u030A"); // A + ring
+        CharSequence a = USERNAME_CASE_MAPPED.enforce("A\u030A"); // A + ring
         CharSequence b = USERNAME_CASE_MAPPED.enforce("\u00C5");       // A with ring
         Assert.assertEquals(a, b);
         Assert.assertEquals(a, ang);
 
-        CharSequence c = USERNAME_CASE_MAPPED.enforce("\u0063\u0327"); // c + cedille
+        CharSequence c = USERNAME_CASE_MAPPED.enforce("c\u0327"); // c + cedille
         CharSequence d = USERNAME_CASE_MAPPED.enforce("\u00E7");       // c cedille
         Assert.assertEquals(c, d);
 
-        CharSequence e = USERNAME_CASE_MAPPED.enforce("\u0052\u030C");
+        CharSequence e = USERNAME_CASE_MAPPED.enforce("R\u030C");
         CharSequence f = USERNAME_CASE_MAPPED.enforce("\u0158");
         Assert.assertEquals(e, f);
     }
 
     @Test
     public void testConfusableCharacters() {
-        CharSequence a = USERNAME_CASE_MAPPED.enforce("\u0041"); // LATIN CAPITAL LETTER A
+        CharSequence a = USERNAME_CASE_MAPPED.enforce("A"); // LATIN CAPITAL LETTER A
         CharSequence b = USERNAME_CASE_MAPPED.enforce("\u0410"); // CYRILLIC CAPITAL LETTER A
         Assert.assertNotEquals(a, b);
     }
@@ -190,7 +192,8 @@ public class UsernameCaseMappedProfileTest {
     public void testIdempotencyEnforcement() {
         testIdempotency(USERNAME_CASE_MAPPED::enforce);
     }
-    
+
+    @SuppressWarnings("EmptyCatch")
     static void testIdempotency(Function<CharSequence, String> rules) {
         for (int cp = Character.MIN_CODE_POINT; cp < Character.MAX_CODE_POINT; cp++) {
             String input = new String(Character.toChars(cp));

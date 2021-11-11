@@ -27,8 +27,11 @@ package rocks.xmpp.precis;
 import org.testng.annotations.Test;
 
 /**
+ * Tests for {@link PrecisProfile#checkBidiRule}.
+ *
  * @author Christian Schudt
  */
+@SuppressWarnings("UnicodeEscape")
 public class BidiRuleTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)

@@ -30,6 +30,8 @@ import org.testng.annotations.Test;
 import static rocks.xmpp.precis.PrecisProfiles.USERNAME_CASE_MAPPED;
 
 /**
+ * Tests for {@link PrecisProfiles#USERNAME_CASE_MAPPED}.
+ *
  * @author Christian Schudt
  */
 public class IdentifierClassTest {
@@ -77,8 +79,7 @@ public class IdentifierClassTest {
     /**
      * Tests this rule for "Unassigned":
      * <p/>
-     * General_Category(cp) is in {Cn} and
-     * Noncharacter_Code_Point(cp) = False
+     * General_Category(cp) is in {Cn} and Noncharacter_Code_Point(cp) = False
      */
     @Test
     public void testUnassigned() {

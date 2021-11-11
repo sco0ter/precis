@@ -30,6 +30,8 @@ import org.testng.annotations.Test;
 import static rocks.xmpp.precis.PrecisProfiles.OPAQUE_STRING;
 
 /**
+ * Tests for {@link PrecisProfiles#OPAQUE_STRING}.
+ *
  * @author Christian Schudt
  */
 public class OpaqueStringProfileTest {

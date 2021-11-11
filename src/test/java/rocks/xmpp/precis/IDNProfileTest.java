@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
+ * Tests for {@link PrecisProfiles#IDN}.
+ *
  * @author Christian Schudt
  */
 public class IDNProfileTest {

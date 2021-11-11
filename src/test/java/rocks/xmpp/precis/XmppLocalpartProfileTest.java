@@ -30,6 +30,8 @@ import static rocks.xmpp.precis.PrecisProfiles.XMPP_LOCALPART;
 import java.util.Arrays;
 
 /**
+ * Tests for {@link PrecisProfiles#XMPP_LOCALPART}.
+ *
  * @author Florian Schmaus
  */
 public class XmppLocalpartProfileTest {
