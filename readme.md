@@ -1,4 +1,6 @@
 [![Precis CI](https://github.com/sco0ter/precis/actions/workflows/maven.yml/badge.svg)](https://github.com/sco0ter/precis/actions/workflows/maven.yml)
+[![Maven Central](http://img.shields.io/maven-central/v/rocks.xmpp/precis.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/rocks.xmpp/precis)
+
 
 A Java implementation of the **"PRECIS Framework: Preparation, Enforcement, and Comparison of Internationalized Strings in Application Protocols"** and profiles thereof.
 
@@ -31,8 +33,6 @@ This project is *Maven* based, you can simply build it with common *Maven* comma
 
 ## Maven Dependency
 
-[![Maven Central](http://img.shields.io/maven-central/v/rocks.xmpp/precis.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/rocks.xmpp/precis)
-
 ```xml
 <dependency>
     <groupId>rocks.xmpp</groupId>
@@ -42,6 +42,9 @@ This project is *Maven* based, you can simply build it with common *Maven* comma
 ```
 
 # API & Samples
+
+[API Docs](https://sco0ter.github.io/precis/apidocs)
+
 
 For most cases, all you need to do is to choose an existing profile from the `PrecisProfiles` class and then prepare or enforce a string:
 
